@@ -13,17 +13,16 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PresentesController">
    <children>
       <ToolBar layoutY="-1.0" prefHeight="80.0" prefWidth="530.0">
         <items>
-          <Button mnemonicParsing="false" prefWidth="80.0" text="Pessoas">
+          <Button mnemonicParsing="false" onAction="#bt3Pessoa" prefWidth="80.0" text="Pessoas">
                <tooltip>
                   <Tooltip text="Pessoas" />
                </tooltip>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="80.0" text="Grupos">
+            <Button mnemonicParsing="false" onAction="#bt3Grupos" prefWidth="80.0" text="Grupos">
                <tooltip>
                   <Tooltip text="Grupos" />
                </tooltip>
@@ -33,7 +32,7 @@
                   <Tooltip text="Presentes" />
                </tooltip>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="80.0" text="Sorteio">
+            <Button mnemonicParsing="false" onAction="#bt3Sorteio" prefWidth="80.0" text="Sorteio">
                <tooltip>
                   <Tooltip text="Sorteio" />
                </tooltip>
