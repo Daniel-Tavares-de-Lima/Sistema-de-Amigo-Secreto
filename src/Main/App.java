@@ -1,14 +1,12 @@
 package Main;
 
 import javafx.application.Application;
-//import javafx.event.ActionEvent;
-//import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-//import javafx.scene.control.Button;
-//import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import Main.Classes.telas;
 
 public class App extends Application {
 
@@ -22,7 +20,6 @@ public class App extends Application {
 
         stage = primaryStage;
         primaryStage.setTitle("Amigo Secreto");
-        String opi;
 
         //--TELA PRINCIPAL
         Parent fxmlMain = FXMLLoader.load(this.getClass().getResource("./view/mainSistemaAmigoSecreto.fxml"));
@@ -41,12 +38,12 @@ public class App extends Application {
     }
     
 
-    public static void mudarTela(String main) {
-        switch (main) {
-            case "main":
+    public static void mudarTela(telas telas) {
+        switch (telas) {
+            case MAIN:
                 stage.setScene(mainSistema);
                 break;
-            case "pessoas":
+            case PESSOAS:
                 stage.setScene(cdtsPessoas);
                 break;
         }
