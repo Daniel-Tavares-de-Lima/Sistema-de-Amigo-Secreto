@@ -5,8 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import Main.Classes.telasEnum;
+import Main.Classes.TelasEnum;
+import Repositorios.IRepositorioPessoa;
+import Main.Classes.Pessoa;
 
 public class App extends Application {
 
@@ -20,7 +21,7 @@ public class App extends Application {
     /*----- */
 
     /*--PESSOAS */
-
+    public static IRepositorioPessoa pessoa;
 
 
     @Override
@@ -52,14 +53,18 @@ public class App extends Application {
 
         primaryStage.setScene(mainSistema);
         primaryStage.show();
+
+        //--CARREGANDO METODO PESSOA CONTROLER
+        
     }
 
     public static void main(String[] args) {
+        pessoa = new IRepositorioPessoa();
         launch(args);
     }
     
 
-    public static void mudarTela(telasEnum telas) {
+    public static void mudarTela(TelasEnum telas) {
         switch (telas) {
             case MAIN:
                 stage.setScene(mainSistema);

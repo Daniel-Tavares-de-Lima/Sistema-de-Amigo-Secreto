@@ -1,7 +1,7 @@
 package Controller;
 
 import Main.App;
-import Main.Classes.telasEnum;
+import Main.Classes.TelasEnum;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -9,19 +9,19 @@ public class PresentesController {
     /*----HEADER */
     @FXML
     protected void bt3Pessoa(ActionEvent e){
-        App.mudarTela(telasEnum.PESSOAS);
+        App.mudarTela(TelasEnum.PESSOAS);
     }
     @FXML
     protected void bt3Grupos(ActionEvent e){
-        App.mudarTela(telasEnum.GRUPOS);
+        App.mudarTela(TelasEnum.GRUPOS);
     }
     @FXML
     protected void bt3Presentes(ActionEvent e){
-        App.mudarTela(telasEnum.PRESENTES);
+        App.mudarTela(TelasEnum.PRESENTES);
     }
     @FXML
     protected void bt3Sorteio(ActionEvent e){
-        App.mudarTela(telasEnum.SORTEIO);
+        App.mudarTela(TelasEnum.SORTEIO);
     }
     /*-----FIM HEADER */
 }

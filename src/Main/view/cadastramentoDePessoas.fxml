@@ -61,13 +61,13 @@
                               <Label text="Nome Completo:  " />
                               <Label text="Apelido:  " GridPane.rowIndex="1" />
                               <Label text="Senha:  " GridPane.rowIndex="2" />
-                              <TextField GridPane.columnIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="nomeCompleto" GridPane.columnIndex="1" />
+                              <TextField fx:id="apelido" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="senha" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                         <Button layoutX="367.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnVoltar" text="Cancelar" />
-                        <Button layoutX="446.0" layoutY="329.0" mnemonicParsing="false" prefWidth="50.0" text="Salvar" />
+                        <Button fx:id="btSalvar" layoutX="446.0" layoutY="329.0" mnemonicParsing="false" onAction="#btSalvar" prefWidth="50.0" text="Salvar" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -76,7 +76,7 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="124.0" layoutY="46.0" text="Pessoa: " />
-                        <ComboBox layoutX="190.0" layoutY="42.0" prefWidth="150.0" />
+                        <ComboBox fx:id="cbPessoa" layoutX="190.0" layoutY="42.0" prefWidth="150.0" />
                         <Label layoutX="92.0" layoutY="96.0" text="Todos os Presentes: " />
                         <Label layoutX="347.0" layoutY="96.0" text="Presentes da Pessoa: " />
                         <TextArea layoutX="57.0" layoutY="120.0" prefHeight="200.0" prefWidth="177.0" />
