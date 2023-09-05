@@ -22,5 +22,4 @@ public class IRepositorioPessoa{
         return pessoas;
     }
 
-    
 }

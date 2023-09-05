@@ -78,17 +78,17 @@ public class PessoaController {
         }
          
     }
-
-    
-    
-   
     /*---FIM MAIN */
 
 
     /*---FOOTER-- */
     @FXML
     protected void btnVoltar(ActionEvent e){
+        nomeCompleto.setText("");
+        apelido.setText("");
+        senha.setText("");
         App.mudarTela(TelasEnum.MAIN);
+
     }
     /*-----FIM FOOTER */
 

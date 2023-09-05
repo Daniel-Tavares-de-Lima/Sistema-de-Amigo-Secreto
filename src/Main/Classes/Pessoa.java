@@ -3,19 +3,10 @@ package Main.Classes;
 
 public class Pessoa{
     
-    String nome;
-    String apelido;
-
-    int id;
-
+    private String nome;
+    private String apelido;
     private String senha;
 
-    public Pessoa(int id, String nome){
-        this.id = id;
-        this.nome = nome;
-        
-    }
-    
     public Pessoa(){
         
     }
@@ -23,7 +14,6 @@ public class Pessoa{
         this.nome = nome;
     }
     
-
     public String getNome(){
         return nome;
     }
@@ -46,14 +36,6 @@ public class Pessoa{
 
     public void setSenha(String senha){
         this.senha = senha;
-    }
-
-    public int getId(){
-        return id;
-    }
-
-    public void setId(int id){
-        this.id = id;
     }
 
     public String toString(){

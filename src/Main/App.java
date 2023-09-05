@@ -6,7 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import Main.Classes.TelasEnum;
+import Repositorios.IRepositorioGrupo;
 import Repositorios.IRepositorioPessoa;
+import Repositorios.IRepositorioPresente;
 import Main.Classes.Pessoa;
 
 public class App extends Application {
@@ -23,6 +25,11 @@ public class App extends Application {
     /*--PESSOAS */
     public static IRepositorioPessoa pessoa;
 
+    /*--GRUPOS */
+    public static IRepositorioGrupo grupo;
+
+    /*---PRESENTES */
+    public static IRepositorioPresente presente;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -60,6 +67,9 @@ public class App extends Application {
 
     public static void main(String[] args) {
         pessoa = new IRepositorioPessoa();
+        grupo = new IRepositorioGrupo();
+        presente = new IRepositorioPresente();
+        
         launch(args);
     }
     
@@ -84,4 +94,6 @@ public class App extends Application {
         
         }
     }
+
+    
 }
