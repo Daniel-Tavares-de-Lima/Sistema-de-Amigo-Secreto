@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 
+
 public class SorteioController {
      /*----HEADER */
     @FXML
@@ -30,21 +31,42 @@ public class SorteioController {
     }
     /*-----FIM HEADER */
 
+    
+
     /*---MAIN */
 
     @FXML
     private ComboBox<Grupos>cbSorteio;
+    @FXML
+    private ComboBox<Grupos> cbSorteio1;
+    @FXML
+    private ComboBox<Pessoa> cbPessoa;
+
 
     private ObservableList<Grupos> obsSorteio;
 
-
+    private ObservableList<Pessoa> obsSorteio1;
+    
     @FXML
-    protected void comboBox(ActionEvent e){
+   protected void initialize(){
+      Interface.MudarTela.mudancaListeree(new Interface.MudarTela.mudanca() {
+         @Override
+         public void mudar(TelasEnum novaTela, Object userData){
+            if(novaTela.equals(TelasEnum.SORTEIO)){
+                obsSorteio = FXCollections.observableArrayList(App.grupo.getGrupos());
+                cbSorteio.setItems(obsSorteio);
 
-        Grupos grupo = new Grupos();
+                obsSorteio = FXCollections.observableArrayList(App.grupo.getGrupos());
+                cbSorteio1.setItems(obsSorteio);
 
-        obsSorteio = FXCollections.observableArrayList(App.grupo.getGrupos());
-        cbSorteio.setItems(obsSorteio);
-    }
+                obsSorteio1 = FXCollections.observableArrayList(App.pessoa.getPessoas());
+                cbPessoa.setItems(obsSorteio1);
+                
+                
+                
+            }
+         }
+      });
+   }
 
 }

@@ -40,6 +40,12 @@ public class PresentesController {
     private TextField preco;
 
 
+
+    public TextField getCategoria(){
+        return categoria;
+    }
+
+
     @FXML
     protected void salvarPresente(ActionEvent e){
         //---VERIFICAR SE NAO ESTA NULO
@@ -59,7 +65,6 @@ public class PresentesController {
                 preco.setText("");
                 categoria.requestFocus();
 
-                
 
             }else{
                 //---EXCEPTION

@@ -9,6 +9,7 @@ import Main.Classes.TelasEnum;
 import Repositorios.IRepositorioGrupo;
 import Repositorios.IRepositorioPessoa;
 import Repositorios.IRepositorioPresente;
+import Interface.MudarTela;
 import Main.Classes.Pessoa;
 
 public class App extends Application {
@@ -30,6 +31,9 @@ public class App extends Application {
 
     /*---PRESENTES */
     public static IRepositorioPresente presente;
+
+    /*----MUDAR TELA */
+    public static MudarTela mudarTela;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -69,31 +73,41 @@ public class App extends Application {
         pessoa = new IRepositorioPessoa();
         grupo = new IRepositorioGrupo();
         presente = new IRepositorioPresente();
+        mudarTela = new MudarTela();
         
         launch(args);
     }
     
 
-    public static void mudarTela(TelasEnum telas) {
+    public static void mudarTela(TelasEnum telas, Object userData) {
         switch (telas) {
             case MAIN:
                 stage.setScene(mainSistema);
+                mudarTela.notificar(TelasEnum.MAIN, userData);
                 break;
             case PESSOAS:
                 stage.setScene(cdtsPessoas);
+                mudarTela.notificar(TelasEnum.PESSOAS, userData);
                 break;
             case GRUPOS:
                 stage.setScene(cdtsGrupos);
+                mudarTela.notificar(TelasEnum.GRUPOS, userData);
                 break;
             case PRESENTES:
                 stage.setScene(presentes);
+                mudarTela.notificar(TelasEnum.PRESENTES, userData);
                 break;
             case SORTEIO:
                 stage.setScene(sorteio);
+                mudarTela.notificar(TelasEnum.SORTEIO, userData);
                 break;   
         
         }
     }
 
-    
+    public static void mudarTela(TelasEnum telas){
+        mudarTela(telas, null);
+    }
+
+
 }

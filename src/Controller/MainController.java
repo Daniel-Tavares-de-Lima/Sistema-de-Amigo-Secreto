@@ -2,12 +2,13 @@ package Controller;
 
 import Main.App;
 import Main.Classes.TelasEnum;
-
-
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 public class MainController{
+
+   
    /*------HEADER--- */
    @FXML
    protected void btnNovoAction(ActionEvent e){
@@ -28,6 +29,18 @@ public class MainController{
    /*---FIM HEADERR */
 
    
+   @FXML
+   protected void initialize(){
+      Interface.MudarTela.mudancaListeree(new Interface.MudarTela.mudanca() {
+         @Override
+         public void mudar(TelasEnum novaTela, Object userData){
+            if(novaTela.equals(TelasEnum.SORTEIO)){
+                
+                
+            }
+         }
+      });
+   }
 
 }
 
