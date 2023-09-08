@@ -1,10 +1,14 @@
 package Main.Classes;
 
+import java.util.ArrayList;
+
 public class Presentes {
     
     private String categoria;
     private String descricao;
     private float preco;
+
+    private ArrayList<Presentes> listaPresentes = new ArrayList<>();
 
     public Presentes(){
 
@@ -20,6 +24,10 @@ public class Presentes {
 
     public void setCategoria(String nome){
         this.categoria = nome;
+    }
+
+    public ArrayList<Presentes> getPresentes(){
+        return listaPresentes;
     }
 
     public String getDescricao(){

@@ -10,6 +10,7 @@ import Repositorios.IRepositorioGrupo;
 import Repositorios.IRepositorioPessoa;
 import Repositorios.IRepositorioPresente;
 import Interface.MudarTela;
+import Main.Classes.Grupos;
 import Main.Classes.Pessoa;
 
 public class App extends Application {
@@ -34,6 +35,8 @@ public class App extends Application {
 
     /*----MUDAR TELA */
     public static MudarTela mudarTela;
+
+    public static Grupos gruposParaVer;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -74,6 +77,10 @@ public class App extends Application {
         grupo = new IRepositorioGrupo();
         presente = new IRepositorioPresente();
         mudarTela = new MudarTela();
+
+        gruposParaVer = new Grupos();
+
+        
         
         launch(args);
     }

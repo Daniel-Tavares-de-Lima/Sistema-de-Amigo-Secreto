@@ -1,8 +1,7 @@
 package Repositorios;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+
 
 import Main.Classes.Pessoa;
 
@@ -11,7 +10,7 @@ public class IRepositorioPessoa{
     private ArrayList<Pessoa> apelidos;
     private ArrayList<Pessoa> senhas;
 
-    private Set<Pessoa> conjuntoApelidos = new HashSet<>();
+    private ArrayList<Pessoa> pessoasEscolhidas = new ArrayList<>();
 
     public IRepositorioPessoa(){
         pessoas = new ArrayList<Pessoa>();
@@ -19,26 +18,26 @@ public class IRepositorioPessoa{
         senhas = new ArrayList<Pessoa>();
     }
 
+    
     //--METODO PARA ADICIONAR PESSOAS AO ARRAYLIST
     public void addPessoa(Pessoa p){
-        if(p != null){
+        if(p != null && !apelidos.contains(p)){
             pessoas.add(p);
-            
+            apelidos.add(p);
             senhas.add(p);
-        }
-    }
-
-    //--METODO PARA ADICIONAR APELIDOS AO ARRAYLIST
-    public void addApelidos(Pessoa a){
-       
-        if(a != null && !conjuntoApelidos.contains(a)){
-            apelidos.add(a);
-            conjuntoApelidos.add(a);
         }else{
-            System.out.println("Nome ja estive " + a);
+            System.out.println("APELIDO JA EXISTE");
         }
     }
 
+    public void addPessoasEscolhidas(Pessoa p){
+        if(p != null){
+            
+            pessoasEscolhidas.add(p);
+        }
+    }
+
+   
     //---METODO PARA RETORNAR TODO O ARRAYLIST DE PESSOAS
     public ArrayList<Pessoa> getPessoas(){
         return pessoas;
@@ -53,6 +52,13 @@ public class IRepositorioPessoa{
     public ArrayList<Pessoa> getSenha(){
         return senhas;
     }
+
+    public ArrayList<Pessoa> getPessoasEscolhidas(){
+        return pessoasEscolhidas;
+    }
+
+
+    
 
     
 

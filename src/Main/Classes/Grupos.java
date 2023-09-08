@@ -1,8 +1,11 @@
 package Main.Classes;
 
+import java.util.ArrayList;
+
 public class Grupos {
 
     private String nomeGrupo;
+    private ArrayList<Pessoa> pessoas = new ArrayList<>();
 
     public Grupos(){
 
@@ -10,6 +13,14 @@ public class Grupos {
 
     public Grupos(String nome){
         this.nomeGrupo = nome;
+    }
+
+    public void adicionarPessoa(Pessoa pessoa){
+        pessoas.add(pessoa);
+    }
+
+    public ArrayList<Pessoa> getPessoasCerta(){
+        return pessoas;
     }
 
     public String getNomeGrupo(){
@@ -24,5 +35,5 @@ public class Grupos {
         return this.nomeGrupo;
     }
 
-
+    
 }

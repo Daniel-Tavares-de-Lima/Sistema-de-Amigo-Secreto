@@ -1,5 +1,6 @@
 package Controller;
 
+/*-----IMPORTS */
 import Main.App;
 import Main.Classes.Pessoa;
 import Main.Classes.Presentes;
@@ -8,8 +9,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+/*----- */
+
 
 public class PresentesController {
+
     /*----HEADER */
     @FXML
     protected void bt3Pessoa(ActionEvent e){
@@ -30,21 +34,18 @@ public class PresentesController {
     /*-----FIM HEADER */
 
     /*-----MAIN */
+    /*-----VARIAVEIS FXML */
     @FXML
     private TextField categoria;
-
     @FXML
     private TextArea descricao;
-
     @FXML
     private TextField preco;
-
-
+    /*-------- */
 
     public TextField getCategoria(){
         return categoria;
     }
-
 
     @FXML
     protected void salvarPresente(ActionEvent e){
@@ -75,10 +76,20 @@ public class PresentesController {
             System.out.println("A label esta vazia");
         }
 
-        
-
-
     }
+
+    /*-------- */
+
+    /*---FOOTER-- */
+   @FXML
+   protected void btnVoltar(ActionEvent e){
+       categoria.setText("");
+       descricao.setText("");
+       preco.setText("");
+       App.mudarTela(TelasEnum.MAIN);
+   }
+   /*-----FIM FOOTER */
+
 
 
 

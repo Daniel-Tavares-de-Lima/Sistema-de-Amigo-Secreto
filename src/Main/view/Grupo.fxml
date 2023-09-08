@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.control.Tooltip?>
@@ -71,22 +71,22 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="105.0" layoutY="34.0" prefHeight="17.0" prefWidth="67.0" text="Grupos: " />
-                        <ChoiceBox fx:id="cbGrupos" layoutX="172.0" layoutY="30.0" prefWidth="150.0" />
+                        <Label layoutX="116.0" layoutY="34.0" prefHeight="17.0" prefWidth="67.0" text="Grupos: " />
                         <Label layoutX="68.0" layoutY="88.0" text="Todas as pessoas:" />
-                        <Label layoutX="333.0" layoutY="88.0" text="Pessoas no grupo: " />
-                        <TextArea layoutX="27.0" layoutY="105.0" prefHeight="200.0" prefWidth="177.0" />
-                        <TextArea layoutX="295.0" layoutY="105.0" prefHeight="200.0" prefWidth="177.0" />
-                        <Button layoutX="227.0" layoutY="148.0" mnemonicParsing="false" prefWidth="40.0" text="Add">
+                        <Label layoutX="361.0" layoutY="88.0" text="Pessoas no grupo: " />
+                        <Button layoutX="240.0" layoutY="148.0" mnemonicParsing="false" onAction="#btAddPessoa" prefWidth="50.0" text="Add">
                            <tooltip>
                               <Tooltip text="Add" />
                            </tooltip>
                         </Button>
-                        <Button layoutX="229.0" layoutY="205.0" mnemonicParsing="false" prefWidth="40.0" text="Del">
+                        <Button layoutX="240.0" layoutY="205.0" mnemonicParsing="false" onAction="#deletePessoaGrupo" prefWidth="50.0" text="Del">
                            <tooltip>
                               <Tooltip text="Del" />
                            </tooltip>
                         </Button>
+                        <ListView fx:id="todosOsGrupos" layoutX="27.0" layoutY="105.0" prefHeight="200.0" prefWidth="177.0" />
+                        <ListView fx:id="pessoasGrupo" layoutX="323.0" layoutY="105.0" prefHeight="200.0" prefWidth="177.0" />
+                        <ComboBox fx:id="cbGrupos" layoutX="183.0" layoutY="30.0" prefWidth="150.0" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -97,7 +97,7 @@
             <Tooltip text="Salvar" />
          </tooltip>
       </Button>
-      <Button layoutX="351.0" layoutY="435.0" mnemonicParsing="false" text="Cancelar">
+      <Button layoutX="351.0" layoutY="435.0" mnemonicParsing="false" onAction="#btnVoltar" text="Cancelar">
          <tooltip>
             <Tooltip text="Cancelar" />
          </tooltip>

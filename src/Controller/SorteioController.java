@@ -1,5 +1,6 @@
 package Controller;
 
+/*------IMPORTS */
 import Main.App;
 import Main.Classes.Grupos;
 import Main.Classes.Pessoa;
@@ -9,7 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-
+/*------ */
 
 public class SorteioController {
      /*----HEADER */
@@ -35,16 +36,20 @@ public class SorteioController {
 
     /*---MAIN */
 
+    /*------VARIAVEIS FXML */
     @FXML
     private ComboBox<Grupos>cbSorteio;
     @FXML
     private ComboBox<Grupos> cbSorteio1;
     @FXML
     private ComboBox<Pessoa> cbPessoa;
+    /*------------ */
 
 
+    /*----VARIAVEIS GRUPO */
     private ObservableList<Grupos> obsSorteio;
-
+    /**--- */
+    /*-----VARIAVEIS PESSOAS */
     private ObservableList<Pessoa> obsSorteio1;
     
     @FXML

@@ -1,18 +1,26 @@
 package Controller;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.print.DocFlavor.STRING;
+
 import Main.App;
 import Main.Classes.Grupos;
 import Main.Classes.Pessoa;
 import Main.Classes.Presentes;
 import Main.Classes.TelasEnum;
+import Repositorios.IRepositorioPessoa;
 import Repositorios.IRepositorioPresente;
 import javafx.beans.Observable;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -39,6 +47,7 @@ public class PessoaController {
 
 
     /*-----MAIN */
+    /*--------VARIAVEIS FXML */
     @FXML
     private TextField nomeCompleto;
     @FXML
@@ -48,41 +57,53 @@ public class PessoaController {
     @FXML
     private ComboBox<Pessoa>cbPessoa;
     @FXML
-    private TextArea taTodosOsPresen;
-    @FXML
-    private TextArea taPresenDaPessoa;
+    private ComboBox<String> presenPessoa;
     @FXML
     private TextField idAdd;
+    @FXML
+    private ListView<Presentes> todosOsPresentes;
+    @FXML
+    private ListView<Presentes> presenteDaPessoa;
+    @FXML
+    private Button addButton;
+    /*--------------- */
     
+    /*--------PRESENTES */
+    private ObservableList<Presentes> presentesDisponiveis;
+    private ObservableList<Presentes> obsPresentes;
+    private ArrayList<Presentes> presentes = new ArrayList<>();
+    private Presentes presenteio;
+    Presentes itemPresen;
+    /*----------- */
+   
 
-
+    /*----VARIAVEIS */
+    Pessoa selecao;
     private ObservableList<Pessoa> obsPessoa;
-    private ObservableList<String> presentesDisponiveis = FXCollections.observableArrayList();
-
-    private ArrayList<String> presentes;
+    String nomeLabel;
+    /*--------- */
 
 
     /*--------------TELA 1 */
     @FXML
     protected void btSalvar(ActionEvent e){
         //--VERIFICAR SE NAO ESTA NULO
-        String nomeLabel = nomeCompleto.getText();
+        nomeLabel = nomeCompleto.getText();
         String apelidoLabel = apelido.getText();
         String senhaLabel = senha.getText();
 
         if(nomeLabel != null && !nomeLabel.isEmpty() && apelidoLabel != null && !apelidoLabel.isEmpty() && senhaLabel != null && !senhaLabel.isEmpty()){
             
-            Pessoa pessoa = new Pessoa(nomeLabel, senhaLabel);
-            Pessoa pessoaApelido = new Pessoa(apelidoLabel);
-            
+            Pessoa pessoa = new Pessoa(nomeLabel,apelidoLabel, senhaLabel);
+        
             App.pessoa.addPessoa(pessoa);
-            App.pessoa.addApelidos(pessoaApelido);
             
-
             /*---COMBO BOX */
             obsPessoa = FXCollections.observableArrayList(App.pessoa.getPessoas());
             cbPessoa.setItems(obsPessoa);
+            cbPessoa.setValue(pessoa);
             /*--------- */
+
 
             nomeCompleto.setText("");
             apelido.setText("");
@@ -110,68 +131,54 @@ public class PessoaController {
     /*------------------------ */
 
     /*-----------TELA 2--*/
+    /*-----METODO QUE MANDA AS INFORMAÇÕES DA TELA PRESENTE PARA A TELA PESSOA */
     @FXML
    protected void initialize(){
       Interface.MudarTela.mudancaListeree(new Interface.MudarTela.mudanca() {
          @Override
          public void mudar(TelasEnum novaTela, Object userData){
             if(novaTela.equals(TelasEnum.PESSOAS)){
-                taTodosOsPresen.setEditable(false);
-                taPresenDaPessoa.setEditable(false);
-                
-                int controle = 0;
-
-                taTodosOsPresen.setText("ID | PRESENTE\n\n");
-                presentes = new ArrayList<String>();
-
-                for(Presentes p : App.presente.getPresentes()){
-                    String texto = p.toString();
-                    presentes.add(controle, p.toString());
-                    
-                    taTodosOsPresen.appendText(controle +  ".    " + texto + "\n");
-                    controle++;
-                }
-
-                
+                obsPresentes = FXCollections.observableArrayList(App.presente.getPresentes());
+                todosOsPresentes.setItems(obsPresentes);
+              
             }
          }
       });
    }
 
    @FXML 
-   protected void btAdd(ActionEvent e){
-        String idLabel = idAdd.getText();
-        
+   //---METODO PARA ADICIONAR PESSOAS A LISTVIEW
+   protected void btAddPresente(ActionEvent e){
+        itemPresen = todosOsPresentes.getSelectionModel().getSelectedItem();
+        if(cbPessoa.getValue() != null && itemPresen != null){
 
+            presenteio = itemPresen;
+            presentes.add(presenteio);
+            presentesDisponiveis = FXCollections.observableArrayList(presentes);
+            presenteDaPessoa.setItems(presentesDisponiveis);
 
-        if(idLabel != null && !idLabel.isEmpty() && cbPessoa.getValue() != null){
-            int idNumero = Integer.parseInt(idLabel);
-            for(int i = 0; i < presentes.size(); i++){
-                
-                if(i == idNumero){
-                    taPresenDaPessoa.setText(presentes.get(i));
-        
-                }else{
-                    //----EXCEPTION
-                    System.out.println("DIGITE UM ID VALIDO");
-                    idAdd.setText("");
-                    
-                }
-                System.out.println(idNumero);
-            }
-            
+            System.out.println(itemPresen);
         }else{
             //---EXCEPTION
-            System.out.println("Label VAZIA");
-            idAdd.setText("");
-            
+            System.out.println("Label VAZIA"); 
         }
+    }
 
-    
-   }
+    @FXML
+    //--METODO PARA DELETAR PESSOAS DA LISTVIEW
+    protected void deletePresente(ActionEvent e){
+        Presentes itemPresenPessoas = presenteDaPessoa.getSelectionModel().getSelectedItem();
+        if(itemPresenPessoas != null){
+            Presentes delPresentes = itemPresenPessoas;
+            presentes.remove(delPresentes);
+            presentesDisponiveis = FXCollections.observableArrayList(presentes);
+            presenteDaPessoa.setItems(presentesDisponiveis);
+        }else{
+            System.out.println("SELECIONE UM CAMPO!");
+        }
+    }
+
    /*------------------ */
-
-
 
     /*---FIM MAIN */
    

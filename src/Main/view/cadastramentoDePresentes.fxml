@@ -68,7 +68,7 @@
             <TextArea fx:id="descricao" prefHeight="52.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button layoutX="369.0" layoutY="426.0" mnemonicParsing="false" text="Cancelar">
+      <Button layoutX="369.0" layoutY="426.0" mnemonicParsing="false" onAction="#btnVoltar" text="Cancelar">
          <tooltip>
             <Tooltip text="Cancelar" />
          </tooltip>
