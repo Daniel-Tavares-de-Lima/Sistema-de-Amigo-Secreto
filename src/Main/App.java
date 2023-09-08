@@ -9,9 +9,10 @@ import Main.Classes.TelasEnum;
 import Repositorios.IRepositorioGrupo;
 import Repositorios.IRepositorioPessoa;
 import Repositorios.IRepositorioPresente;
+import Repositorios.IRepositorioSorteio;
 import Interface.MudarTela;
 import Main.Classes.Grupos;
-import Main.Classes.Pessoa;
+
 
 public class App extends Application {
 
@@ -32,6 +33,8 @@ public class App extends Application {
 
     /*---PRESENTES */
     public static IRepositorioPresente presente;
+    /*-- SORTEIO*/
+    public static IRepositorioSorteio sorteios;
 
     /*----MUDAR TELA */
     public static MudarTela mudarTela;
@@ -76,6 +79,7 @@ public class App extends Application {
         pessoa = new IRepositorioPessoa();
         grupo = new IRepositorioGrupo();
         presente = new IRepositorioPresente();
+        sorteios = new IRepositorioSorteio();
         mudarTela = new MudarTela();
 
         gruposParaVer = new Grupos();

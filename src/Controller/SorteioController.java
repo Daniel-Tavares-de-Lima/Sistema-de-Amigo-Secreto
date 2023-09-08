@@ -1,10 +1,17 @@
 package Controller;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 /*------IMPORTS */
 import Main.App;
 import Main.Classes.Grupos;
 import Main.Classes.Pessoa;
 import Main.Classes.TelasEnum;
+import Repositorios.IRepositorioSorteio;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -51,6 +58,10 @@ public class SorteioController {
     /**--- */
     /*-----VARIAVEIS PESSOAS */
     private ObservableList<Pessoa> obsSorteio1;
+
+    private ArrayList<String> pessoasAmigoSecreto = new ArrayList<>();
+
+   
     
     @FXML
    protected void initialize(){
@@ -67,11 +78,29 @@ public class SorteioController {
                 obsSorteio1 = FXCollections.observableArrayList(App.pessoa.getPessoas());
                 cbPessoa.setItems(obsSorteio1);
                 
-                
-                
             }
          }
       });
    }
+
+   /*------BOTAO REALIZAR SORTEIO TELA 1*/
+
+   @FXML
+   protected void sorteio(ActionEvent e){
+        
+        Grupos grupoSelecionado = cbSorteio.getValue();
+       
+        if(cbSorteio.getValue() != null){
+
+            IRepositorioSorteio sistemas = new IRepositorioSorteio(grupoSelecionado.getPessoasCerta());
+            sistemas.realizarAmigoSecreto(grupoSelecionado.getPessoasCerta());
+            
+        }else{
+            //---EXCEPITON
+            System.out.println("LABEL VAZIA");
+        }
+   }
+
+  
 
 }

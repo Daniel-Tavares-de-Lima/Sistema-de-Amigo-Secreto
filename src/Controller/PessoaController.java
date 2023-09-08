@@ -1,19 +1,10 @@
 package Controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.print.DocFlavor.STRING;
 
 import Main.App;
-import Main.Classes.Grupos;
 import Main.Classes.Pessoa;
 import Main.Classes.Presentes;
 import Main.Classes.TelasEnum;
-import Repositorios.IRepositorioPessoa;
-import Repositorios.IRepositorioPresente;
-import javafx.beans.Observable;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 
@@ -71,9 +61,6 @@ public class PessoaController {
     /*--------PRESENTES */
     private ObservableList<Presentes> presentesDisponiveis;
     private ObservableList<Presentes> obsPresentes;
-    private ArrayList<Presentes> presentes = new ArrayList<>();
-    private Presentes presenteio;
-    Presentes itemPresen;
     /*----------- */
    
 
@@ -140,6 +127,8 @@ public class PessoaController {
             if(novaTela.equals(TelasEnum.PESSOAS)){
                 obsPresentes = FXCollections.observableArrayList(App.presente.getPresentes());
                 todosOsPresentes.setItems(obsPresentes);
+                presentesDisponiveis = FXCollections.observableArrayList(App.presente.getPresentesEscolhidos());
+                presenteDaPessoa.setItems(presentesDisponiveis);
               
             }
          }
@@ -149,18 +138,24 @@ public class PessoaController {
    @FXML 
    //---METODO PARA ADICIONAR PESSOAS A LISTVIEW
    protected void btAddPresente(ActionEvent e){
-        itemPresen = todosOsPresentes.getSelectionModel().getSelectedItem();
-        if(cbPessoa.getValue() != null && itemPresen != null){
+        Presentes itemPresentes = todosOsPresentes.getSelectionModel().getSelectedItem();
+        Pessoa pessoasSelecionadas = cbPessoa.getValue();
 
-            presenteio = itemPresen;
-            presentes.add(presenteio);
-            presentesDisponiveis = FXCollections.observableArrayList(presentes);
-            presenteDaPessoa.setItems(presentesDisponiveis);
+        if(cbPessoa.getValue() != null && itemPresentes != null){
+            if(!pessoasSelecionadas.getPresenteCerto().contains(itemPresentes)){
+                pessoasSelecionadas.adicionarPresentes(itemPresentes);
 
-            System.out.println(itemPresen);
+                presentesDisponiveis = FXCollections.observableArrayList(pessoasSelecionadas.getPresenteCerto());
+                presenteDaPessoa.setItems(presentesDisponiveis);
+            }else{
+                System.out.println("ESSE PRESENTE JA FOI ADD EM: " + pessoasSelecionadas);
+            }
+
+            for(Presentes p : pessoasSelecionadas.getPresenteCerto()){
+                System.out.println("O presente esta com a pessoa" + pessoasSelecionadas + "o nome: " + p);
+            }
         }else{
-            //---EXCEPTION
-            System.out.println("Label VAZIA"); 
+            System.out.println("LABEL VAZIA");
         }
     }
 
@@ -168,10 +163,11 @@ public class PessoaController {
     //--METODO PARA DELETAR PESSOAS DA LISTVIEW
     protected void deletePresente(ActionEvent e){
         Presentes itemPresenPessoas = presenteDaPessoa.getSelectionModel().getSelectedItem();
-        if(itemPresenPessoas != null){
-            Presentes delPresentes = itemPresenPessoas;
-            presentes.remove(delPresentes);
-            presentesDisponiveis = FXCollections.observableArrayList(presentes);
+        Pessoa pessoaSelecionada = cbPessoa.getValue();
+
+        if(itemPresenPessoas != null && pessoaSelecionada != null){
+            pessoaSelecionada.removerPresente(itemPresenPessoas);
+            presentesDisponiveis = FXCollections.observableArrayList(pessoaSelecionada.getPresenteCerto());
             presenteDaPessoa.setItems(presentesDisponiveis);
         }else{
             System.out.println("SELECIONE UM CAMPO!");

@@ -1,13 +1,13 @@
 package Repositorios;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import Main.Classes.Presentes;
 
 public class IRepositorioPresente {
     
     private ArrayList<Presentes> presentes;
+    
+    private ArrayList<Presentes> presentesEscolhidos = new ArrayList<>();
     
 
     public IRepositorioPresente(){
@@ -24,6 +24,17 @@ public class IRepositorioPresente {
     //---METODO PARA RETORNAR TODO O ARRAYLIST
     public ArrayList<Presentes> getPresentes(){
         return presentes;
+    }
+
+    //----METODO PARA ADICIONAR PRESENTES A UMA PESSOA
+    public void addPresentesEscolhidos(Presentes p){
+        if(p != null){
+            presentesEscolhidos.add(p);
+        }
+    }
+
+    public ArrayList<Presentes> getPresentesEscolhidos(){
+        return presentesEscolhidos;
     }
 
     

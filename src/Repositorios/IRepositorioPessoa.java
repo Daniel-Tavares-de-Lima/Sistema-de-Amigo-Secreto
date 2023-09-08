@@ -30,9 +30,9 @@ public class IRepositorioPessoa{
         }
     }
 
+    /*-----METODO PARA ADICIONAR PESSOAS ESCOLHIDAS AO GRUPO */
     public void addPessoasEscolhidas(Pessoa p){
         if(p != null){
-            
             pessoasEscolhidas.add(p);
         }
     }
@@ -43,16 +43,17 @@ public class IRepositorioPessoa{
         return pessoas;
     }
 
-    //---METODO PARA RETORNAR TODO O ARRAYLIST DE PESSOAS
+    //---METODO PARA RETORNAR TODO O ARRAYLIST DE APELIDOS
     public ArrayList<Pessoa> getApelidos(){
         return apelidos;
     }
 
-    //---METODO PARA RETORNAR TODO O ARRAYLIST DE PESSOAS
+    //---METODO PARA RETORNAR TODO O ARRAYLIST DE SENHAS
     public ArrayList<Pessoa> getSenha(){
         return senhas;
     }
 
+    /*-------METODO PARA RETORNAR TODAS AS PESSOAS ESCOLHIDAS DO GRUPO */
     public ArrayList<Pessoa> getPessoasEscolhidas(){
         return pessoasEscolhidas;
     }

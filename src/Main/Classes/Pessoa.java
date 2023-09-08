@@ -1,10 +1,8 @@
 package Main.Classes;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-import Repositorios.IRepositorioPresente;
 
 public class Pessoa{
     
@@ -12,14 +10,9 @@ public class Pessoa{
     private String apelido;
     private String senha;
 
-    private Grupos grupos;
-
-    public boolean pertenceAoGrupo(Grupos  gruposParaVerificar){
-        return grupos != null && grupos.equals(gruposParaVerificar);
-    }
     
 
-    private IRepositorioPresente presentes;
+    private ArrayList<Presentes> presentes = new ArrayList<>();
 
     public Pessoa(){
        
@@ -29,10 +22,6 @@ public class Pessoa{
         this.nome = nome;
     }
 
-    public Pessoa(String nome, IRepositorioPresente presentes){
-        this.nome = nome;
-        this.presentes = presentes;
-    }
 
     public Pessoa(String nome, String apelido, String senha){
         this.nome = nome;
@@ -41,21 +30,22 @@ public class Pessoa{
     }
 
     /////////////////////
-    public void adicionarPessoa(Presentes p){
-        presentes.addPresentes(p);
-       
+   
+    
+    public ArrayList<Presentes> getPresenteCerto(){
+        return presentes;
     }
 
-    public List<Presentes> getPresentess(){
-        return presentes.getPresentes();
+    public void adicionarPresentes(Presentes presente){
+        presentes.add(presente);
     }
 
+    public void removerPresente(Presentes presente){
+        presentes.remove(presente);
+    }
     /////////////////////
 
-    // public IRepositorioPresente getPresentes(){
-    //     return presentes;
-    // }
-    
+  
     public String getNome(){
         return this.nome;
     }

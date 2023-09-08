@@ -46,7 +46,7 @@
                      <children>
                         <Label layoutX="148.0" layoutY="93.0" text="Grupo:  " />
                         <ComboBox fx:id="cbSorteio" layoutX="190.0" layoutY="89.0" prefWidth="150.0" promptText="Selecione o Grupo" />
-                        <Button layoutX="187.0" layoutY="151.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="156.0" text="Realizar Sorteio" textFill="#d30101">
+                        <Button layoutX="187.0" layoutY="151.0" mnemonicParsing="false" onAction="#sorteio" prefHeight="91.0" prefWidth="156.0" text="Realizar Sorteio" textFill="#d30101">
                            <font>
                               <Font size="18.0" />
                            </font>

@@ -1,20 +1,19 @@
 package Controller;
 
+import java.beans.EventHandler;
 /*-----IMPORTS */
 import java.time.LocalDate;
-import java.util.ArrayList;
 import Main.App;
 import Main.Classes.Grupos;
 import Main.Classes.Pessoa;
-import Main.Classes.Presentes;
 import Main.Classes.TelasEnum;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -67,7 +66,6 @@ public class GruposController {
     /*------ PESSOAS*/
     private ObservableList<Pessoa> obsPessoas;
     private ObservableList<Pessoa> obsPessoasNoGrupo;
-    private ArrayList<Pessoa> pessoas = new ArrayList<>();
 
     /*------------- */
 
@@ -89,8 +87,9 @@ public class GruposController {
         // ---VERIFICAR SE NÃO ESTA NULO OU VAZIO
         String labelGrupo = tfNomeGrupo.getText();
 
-        if (labelGrupo != null && !labelGrupo.isEmpty()) {
-            if (comparar <= 0) {
+        if (labelGrupo != null && !labelGrupo.isEmpty() && data.getValue() != null) {
+
+            if(comparar <= 0) {
                 Grupos grupo = new Grupos(labelGrupo);
 
                 App.grupo.addGrupos(grupo);
@@ -125,7 +124,7 @@ public class GruposController {
     /*-----METODO QUE MANDA AS INFORMAÇÕES DA TELA PESSOA PARA A TELA GRUPO */
 
     @FXML
-    protected void initialize() {
+    protected <T> void initialize() {
         Interface.MudarTela.mudancaListeree(new Interface.MudarTela.mudanca() {
             @Override
             public void mudar(TelasEnum novaTela, Object userData) {
@@ -143,34 +142,44 @@ public class GruposController {
                     // }
                     // });
 
+                    // cbGrupos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Grupos>() {
+                    //     @Override
+                    //     public void changed(ObservableValue<? extends Grupos> observalble, Grupos oldValue, Grupos newValue){
+                            
+                    //         for(Pessoa p : newValue.getPessoasCerta()){
+                    //             System.out.println(p);
+                    //         }
+                            
+                    //     }
+                    // });
+                   
+
                 }
             }
         });
     }
 
-   
 
     @FXML
     // --METODO PARA ADICIONAR PESSOAS NO GRUPO
     protected void btAddPessoa(ActionEvent e) {
-        
-
         Pessoa itemPessoa = todosOsGrupos.getSelectionModel().getSelectedItem();
-        String pessoaSelecionada = itemPessoa.toString();
         Grupos gruposSelecionados = cbGrupos.getValue();
-        Pessoa pessoa = new Pessoa(pessoaSelecionada);
-        App.pessoa.addPessoasEscolhidas(pessoa);
+        
         if (cbGrupos.getValue() != null && itemPessoa != null) {
+            if(!gruposSelecionados.getPessoasCerta().contains(itemPessoa)){
+                gruposSelecionados.adicionarPessoa(itemPessoa);
 
-            gruposSelecionados.adicionarPessoa(itemPessoa);
+                obsPessoasNoGrupo = FXCollections.observableArrayList(gruposSelecionados.getPessoasCerta());
+                pessoasGrupo.setItems(obsPessoasNoGrupo);
 
-            obsPessoasNoGrupo = FXCollections.observableArrayList(gruposSelecionados.getPessoasCerta());
-            pessoasGrupo.setItems(obsPessoasNoGrupo);
+            }else{
+                System.out.println("ESSA PESSOA JA FOI ADD NO: " + gruposSelecionados);
+            }
             
             for(Pessoa g : gruposSelecionados.getPessoasCerta()){
                 System.out.println("A pessoa esta no grupo : " + gruposSelecionados + " o nome dela é: " + g);
             }
-            
         }else {
             // ---EXCEPTION
             System.out.println("LABEL VAZIA");
@@ -179,13 +188,20 @@ public class GruposController {
     }
 
     @FXML
+    protected void btSalvar(ActionEvent e){
+        //----EXCEPTION
+    }
+
+    @FXML
     // ----METODO PARA DELETAR PESSOAS DA LISTVIEW
     protected void deletePessoaGrupo(ActionEvent e) {
         Pessoa itemPessoa = pessoasGrupo.getSelectionModel().getSelectedItem();
-        if (itemPessoa != null) {
-            pessoas.remove(itemPessoa);
-            obsPessoas = FXCollections.observableArrayList(pessoas);
-            pessoasGrupo.setItems(obsPessoas);
+        Grupos gruposSelecionados = cbGrupos.getValue();
+        if (itemPessoa != null && gruposSelecionados != null) {
+            gruposSelecionados.removerPessoa(itemPessoa);
+            
+            obsPessoasNoGrupo = FXCollections.observableArrayList(gruposSelecionados.getPessoasCerta());
+            pessoasGrupo.setItems(obsPessoasNoGrupo);
         } else {
             System.out.println("SELECIONE UM CAMPO!");
         }

@@ -2,14 +2,24 @@ package Main.Classes;
 
 import java.util.ArrayList;
 
+
 public class Grupos {
 
     private String nomeGrupo;
     private ArrayList<Pessoa> pessoas = new ArrayList<>();
 
+    private ArrayList<Pessoa> pessoasAmigoSecreto;
+
     public Grupos(){
 
     }
+
+    
+    public ArrayList<Pessoa> obterListaDePessoas(){
+        return pessoasAmigoSecreto;
+    }
+
+    
 
     public Grupos(String nome){
         this.nomeGrupo = nome;
@@ -17,6 +27,10 @@ public class Grupos {
 
     public void adicionarPessoa(Pessoa pessoa){
         pessoas.add(pessoa);
+    }
+
+    public void removerPessoa(Pessoa pessoa){
+        pessoas.remove(pessoa);
     }
 
     public ArrayList<Pessoa> getPessoasCerta(){
@@ -33,6 +47,19 @@ public class Grupos {
 
     public String toString(){
         return this.nomeGrupo;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        Grupos grupo = (Grupos) o;
+        return nomeGrupo.equals(grupo.nomeGrupo);
+    } 
+
+    @Override
+    public int hashCode(){
+        return nomeGrupo.hashCode();
     }
 
     

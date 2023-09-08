@@ -2,7 +2,6 @@ package Controller;
 
 /*-----IMPORTS */
 import Main.App;
-import Main.Classes.Pessoa;
 import Main.Classes.Presentes;
 import Main.Classes.TelasEnum;
 import javafx.event.ActionEvent;
