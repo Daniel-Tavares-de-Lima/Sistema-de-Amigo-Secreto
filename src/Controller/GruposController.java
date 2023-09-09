@@ -96,27 +96,40 @@ public class GruposController {
                 Grupos grupo = new Grupos(labelGrupo);
                 App.grupo.addGrupos(grupo);
 
-                /*---COMBO BOX */
-                obsGrupos = FXCollections.observableArrayList(App.grupo.getGrupos());
-                cbGrupos.setItems(obsGrupos);
-                cbGrupos.setValue(grupo);
+                if (!App.grupo.foiAddGrupoFalhou()) {
+                    /*---COMBO BOX */
+                    obsGrupos = FXCollections.observableArrayList(App.grupo.getGrupos());
+                    cbGrupos.setItems(obsGrupos);
+                    cbGrupos.setValue(grupo);
 
-                /*------- */
+                    
+                    /*---ALERT GRUPO SALVO */
+                    Alert alertSalvaPessoa = new Alert(Alert.AlertType.INFORMATION);
+                    alertSalvaPessoa.setTitle("GRUPO SALVO");
+                    alertSalvaPessoa.setContentText("GRUPO SALVO COM SUCESSO!");
+                    alertSalvaPessoa.show();
+                    /*------ */
 
-                tfNomeGrupo.setText("");
-                tfNomeGrupo.requestFocus();
-                data.getEditor().clear();
+                    tfNomeGrupo.setText("");
+                    tfNomeGrupo.requestFocus();
+                    data.getEditor().clear();
 
-                for (Grupos g : App.grupo.getGrupos()) {
-                    System.out.println(g);
+                    for (Grupos g : App.grupo.getGrupos()) {
+                        System.out.println(g);
+                    }
+
+                } else {
+                
+                    /*---ALERT */
+                    Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
+                    alertSalvaPessoa.setTitle("GRUPO EXISTENTE");
+                    alertSalvaPessoa.setContentText("Nome do grupo já existe, por favor digite outro.");
+                    alertSalvaPessoa.show();
+                    /*------ */
+
+                    tfNomeGrupo.setText("");
+                    App.grupo.reseteGrupoFalhou();
                 }
-
-                /*---ALERT */
-                // Alert alertSalvaPessoa = new Alert(Alert.AlertType.INFORMATION);
-                // alertSalvaPessoa.setTitle("GRUPO ADICIONADO");
-                // alertSalvaPessoa.setContentText("Grupo adicionado com sucesso");
-                // alertSalvaPessoa.show();
-                /*------ */
 
             } else {
                 /*---ALERT */
@@ -150,18 +163,20 @@ public class GruposController {
                 if (novaTela.equals(TelasEnum.GRUPOS)) {
                     obsPessoas = FXCollections.observableArrayList(App.pessoa.getPessoas());
                     todosOsGrupos.setItems(obsPessoas);
-                    // obsPessoasNoGrupo = FXCollections.observableArrayList(App.pessoa.getPessoasEscolhidas());
+                    // obsPessoasNoGrupo =
+                    // FXCollections.observableArrayList(App.pessoa.getPessoasEscolhidas());
                     // pessoasGrupo.setItems(obsPessoasNoGrupo);
 
                     cbGrupos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Grupos>() {
                         @Override
-                        public void changed(ObservableValue<? extends Grupos> observable, Grupos oldValue, Grupos newValue){
-                            if(newValue != null){
+                        public void changed(ObservableValue<? extends Grupos> observable, Grupos oldValue,
+                                Grupos newValue) {
+                            if (newValue != null) {
                                 List<Pessoa> pessoasDoGrupo = newValue.getPessoasCerta();
                                 obsPessoasNoGrupo = FXCollections.observableArrayList(pessoasDoGrupo);
                                 pessoasGrupo.setItems(obsPessoasNoGrupo);
-                            }else{
-                                //--SE NADA TIVER SELECIONADO NA COMBOBOX A LISTA SERA LIMPADA
+                            } else {
+                                // --SE NADA TIVER SELECIONADO NA COMBOBOX A LISTA SERA LIMPADA
                                 obsPessoasNoGrupo.clear();
                             }
                         }
@@ -171,7 +186,6 @@ public class GruposController {
             }
         });
     }
-
 
     @FXML
     // --METODO PARA ADICIONAR PESSOAS NO GRUPO
@@ -210,7 +224,6 @@ public class GruposController {
 
     }
 
-
     @FXML
     // ----METODO PARA DELETAR PESSOAS DA LISTVIEW
     protected void deletePessoaGrupo(ActionEvent e) {
@@ -242,7 +255,6 @@ public class GruposController {
         App.mudarTela(TelasEnum.MAIN);
     }
 
-    
     @FXML
     protected void btSalvar(ActionEvent e) {
         /*---ALERT */

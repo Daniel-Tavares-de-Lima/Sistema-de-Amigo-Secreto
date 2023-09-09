@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 public class IRepositorioGrupo {
     
     private ArrayList<Grupos> grupos;
+    private boolean addGrupoFalhou = false;
 
     public IRepositorioGrupo(){
         grupos = new ArrayList<Grupos>();
@@ -22,13 +23,9 @@ public class IRepositorioGrupo {
             if(!grupoAdd){
                 grupos.add(g);
             }else{
-                //---EXCPETION
-                /*---ALERT */
-                Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
-                alertSalvaPessoa.setTitle("GRUPO EXISTENTE");
-                alertSalvaPessoa.setContentText("Nome do grupo já existe, por favor digite outro.");
-                alertSalvaPessoa.show();
-                /*------ */
+                if(!addGrupoFalhou){
+                    addGrupoFalhou = true;
+                }
             }
             
         }
@@ -43,5 +40,13 @@ public class IRepositorioGrupo {
     //--METODO PARA RETORNA O ARRAYLIST
     public ArrayList<Grupos> getGrupos(){
         return grupos;
+    }
+
+    public boolean foiAddGrupoFalhou(){
+        return addGrupoFalhou;
+    }
+
+    public void reseteGrupoFalhou(){
+        addGrupoFalhou = false;
     }
 }

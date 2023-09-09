@@ -14,7 +14,6 @@ public class Grupos {
 
     }
 
-    
     public ArrayList<Pessoa> obterListaDePessoas(){
         return pessoasAmigoSecreto;
     }
@@ -30,6 +29,7 @@ public class Grupos {
     public void setRealizadoSorteio(boolean realizadoSorteio){
         this.realizadoSorteio = realizadoSorteio;
     }
+
     /*------- */
 
     public Grupos(String nome){
@@ -50,6 +50,7 @@ public class Grupos {
     }
     /*------------ */
 
+    
     public String getNomeGrupo(){
         return nomeGrupo;
     }

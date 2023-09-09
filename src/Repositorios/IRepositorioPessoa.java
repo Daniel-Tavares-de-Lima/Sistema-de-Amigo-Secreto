@@ -10,8 +10,12 @@ public class IRepositorioPessoa{
     private ArrayList<Pessoa> pessoas;
     private ArrayList<Pessoa> apelidos;
     private ArrayList<Pessoa> senhas;
+    
+    private boolean addPessoaFalhou = false;
 
     private ArrayList<Pessoa> pessoasEscolhidas = new ArrayList<>();
+
+    
 
     public IRepositorioPessoa(){
         pessoas = new ArrayList<Pessoa>();
@@ -20,21 +24,21 @@ public class IRepositorioPessoa{
     }
 
     
-    //--METODO PARA ADICIONAR PESSOAS AO ARRAYLIST
+    // --METODO PARA ADICIONAR PESSOAS AO ARRAYLIST
     public void addPessoa(Pessoa p){
         if(p != null && !apelidos.contains(p)){
             pessoas.add(p);
             apelidos.add(p);
             senhas.add(p);
         }else{
-            /*---ALERT */
-            Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
-            alertSalvaPessoa.setTitle("APELIDO JA EXISTE");
-            alertSalvaPessoa.setContentText("O apelido digitado já existe, por favor digite outro");
-            alertSalvaPessoa.show();
-            /*------ */
+            if(!addPessoaFalhou){
+                addPessoaFalhou = true;
+            }
+            
         }
     }
+
+   
 
 
     /*-----METODO PARA ADICIONAR PESSOAS ESCOLHIDAS AO GRUPO */
@@ -65,6 +69,14 @@ public class IRepositorioPessoa{
         return pessoasEscolhidas;
     }
 
+    public boolean foiAddPessoaFalhou(){
+        return addPessoaFalhou;
+    }
+
+    public void reseteAddPessoaFalhou(){
+        addPessoaFalhou = false;
+    }
+    
 
     
 

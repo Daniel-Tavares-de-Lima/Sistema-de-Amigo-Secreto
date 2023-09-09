@@ -21,8 +21,7 @@ public class Sorteio {
     public List<Pessoa> obterListaDePessoas(){
         return pessoasAmigoSecreto;
     }
-    /*----------- */
-
+    
 
     public ArrayList<Pessoa> getSenhasUsuarios(){
         return senhasDosUsuarios;

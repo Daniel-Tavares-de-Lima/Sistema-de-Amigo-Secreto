@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import java.util.Objects;
 
-
 public class Pessoa{
     
     private String nome;
@@ -44,6 +43,8 @@ public class Pessoa{
     public void removerPresente(Presentes presente){
         presentes.remove(presente);
     }
+    /*------ */
+    
     /////////////////////
     public void adicionarSenha(String senhaListas){
         senhasLista.add(senhaListas);
@@ -52,8 +53,6 @@ public class Pessoa{
         return senhasLista;
     }
     ////////////////////
-
-    
 
   
     public String getNome(){

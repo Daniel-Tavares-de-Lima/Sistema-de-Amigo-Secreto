@@ -125,7 +125,6 @@ public class SorteioController {
                 alertSalvaPessoa.show();
                 /*------ */
 
-                
             }
 
         } else {
@@ -163,7 +162,7 @@ public class SorteioController {
     /// -----METODO PARA CONSULTAR O AMIGO SECRETO
     protected void consultarAmigo(ActionEvent e) {
         Grupos grupoEscolhido = cbSorteioGrupo.getValue();
-        String senhaDigitada = senha.getText().trim(); // --Remove espaços em branco
+        String senhaDigitada = senha.getText(); // --Remove espaços em branco
         Pessoa pessoaEscolhida = cbPessoa.getValue();
         int indicePessoaEscolhida = cbPessoa.getSelectionModel().getSelectedIndex();
 
@@ -197,6 +196,8 @@ public class SorteioController {
                 alertSalvaPessoa.setContentText("Por favor, verifique sua senha");
                 alertSalvaPessoa.show();
                 /*------ */
+
+                
             }
             /*------------------------ */
 
