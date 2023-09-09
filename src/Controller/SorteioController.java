@@ -64,7 +64,8 @@ public class SorteioController {
     /*-----VARIAVEIS PESSOAS */
     private ObservableList<Pessoa> obsSorteio1;
     // private ObservableList<Pessoa> obsSenhas;
-   
+    List<String> nomesAmigosSecretos;
+    
     
     /*-------- */
 
@@ -82,11 +83,6 @@ public class SorteioController {
                     obsSorteio = FXCollections.observableArrayList(App.grupo.getGrupos());
                     cbSorteioGrupo.setItems(obsSorteio);
 
-                    // ---INICIALIZA AS INFORMAÇÕES DE PESSOAS E ADICIONA COMBOBOX
-                    // obsSorteio1 = FXCollections.observableArrayList(App.pessoa.getPessoas());
-                    // cbPessoa.setItems(obsSorteio1);
-
-                    // ---INICIALIZA AS INFORMAÇÕES DE PESSOAS E ARMAZENA AS SENHAS
                     
                 }
             }
@@ -102,15 +98,35 @@ public class SorteioController {
 
         if (cbSorteio.getValue() != null) {
 
-            IRepositorioSorteio sistemas = new IRepositorioSorteio(grupoSelecionado.getPessoasCerta());
-            sistemas.realizarAmigoSecreto(grupoSelecionado.getPessoasCerta());
+             /*---VERIFICA SE HOUVE O SORTEIO */
+            if(grupoSelecionado.foiRealizadoSorteio()){
+                /*---ALERT */
+                Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
+                alertSalvaPessoa.setTitle("SORTEIO REALIZADO");
+                alertSalvaPessoa.setContentText("O sorteio já foi realizado para este grupo");
+                alertSalvaPessoa.show();
+                /*------ */
+            }  else{
+                IRepositorioSorteio sistemas = new IRepositorioSorteio(grupoSelecionado.getPessoasCerta());
+                // sistemas.realizarAmigoSecreto(grupoSelecionado.getPessoasCerta());
 
-            /*---ALERT */
-            Alert alertSalvaPessoa = new Alert(Alert.AlertType.INFORMATION);
-            alertSalvaPessoa.setTitle("Sorteio");
-            alertSalvaPessoa.setContentText("Sorteio realizado com sucesso!");
-            alertSalvaPessoa.show();
-            /*------ */
+                nomesAmigosSecretos = sistemas.realizarAmigoSecreto(grupoSelecionado.getPessoasCerta());
+                grupoSelecionado.setRealizadoSorteio(true);
+
+                System.out.println(nomesAmigosSecretos);
+
+              
+
+                
+                /*---ALERT */
+                Alert alertSalvaPessoa = new Alert(Alert.AlertType.INFORMATION);
+                alertSalvaPessoa.setTitle("Sorteio");
+                alertSalvaPessoa.setContentText("Sorteio realizado com sucesso!");
+                alertSalvaPessoa.show();
+                /*------ */
+
+                
+            }
 
         } else {
             /*---ALERT */
@@ -149,6 +165,10 @@ public class SorteioController {
         Grupos grupoEscolhido = cbSorteioGrupo.getValue();
         String senhaDigitada = senha.getText().trim(); // --Remove espaços em branco
         Pessoa pessoaEscolhida = cbPessoa.getValue();
+        int indicePessoaEscolhida = cbPessoa.getSelectionModel().getSelectedIndex();
+
+   
+
         if (cbSorteioGrupo.getValue() != null && cbPessoa.getValue() != null && senhaDigitada != null && !senhaDigitada.isEmpty()) {
             /*--------VERIFICAR SE A SENHA ESTÁ CORRETA */
             ArrayList<String> senhaListaPessoal = pessoaEscolhida.getSenhas();
@@ -156,7 +176,16 @@ public class SorteioController {
             for (String senhaArmazenada : senhaListaPessoal) {
                 if (senhaArmazenada.equals(senhaDigitada)) {
                     senhaCorreta = true;
+                   
+                    /*---ALERT */
+                    Alert alertSalvaPessoa = new Alert(Alert.AlertType.INFORMATION);
+                    alertSalvaPessoa.setTitle("AMIGO SECRETO");
+                    alertSalvaPessoa.setContentText("Amigo secreto de '" + pessoaEscolhida + "' no " + "'" + grupoEscolhido + "' é " + nomesAmigosSecretos.get(indicePessoaEscolhida));///--ESTA IMPRIMINDO NULO
+                    alertSalvaPessoa.show();
+                    /*------ */
+                    
                     System.out.println("SENHA DISPONIVEL");
+                    
                     break;// --SE ENCONTROU UMA SENHA CORRETA NAO PRECISA CONTIUNAR VERIFICANDO
                 }
                 // System.out.println(p.getSenha());
@@ -171,6 +200,9 @@ public class SorteioController {
             }
             /*------------------------ */
 
+           
+            
+            
 
         }else {
             /*---ALERT */

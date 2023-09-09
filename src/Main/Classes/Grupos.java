@@ -7,8 +7,8 @@ public class Grupos {
 
     private String nomeGrupo;
     private ArrayList<Pessoa> pessoas = new ArrayList<>();
-
     private ArrayList<Pessoa> pessoasAmigoSecreto;
+
 
     public Grupos(){
 
@@ -19,12 +19,24 @@ public class Grupos {
         return pessoasAmigoSecreto;
     }
 
-    
+
+     //---VERIFICA SE HOUVE SORTEIO
+    private boolean realizadoSorteio;
+
+    public boolean foiRealizadoSorteio(){
+        return realizadoSorteio;
+    }
+
+    public void setRealizadoSorteio(boolean realizadoSorteio){
+        this.realizadoSorteio = realizadoSorteio;
+    }
+    /*------- */
 
     public Grupos(String nome){
         this.nomeGrupo = nome;
     }
 
+    /*---METODO QUE ADICIONA E REMOVE PESSOAS EM GRUPOS */
     public void adicionarPessoa(Pessoa pessoa){
         pessoas.add(pessoa);
     }
@@ -36,6 +48,7 @@ public class Grupos {
     public ArrayList<Pessoa> getPessoasCerta(){
         return pessoas;
     }
+    /*------------ */
 
     public String getNomeGrupo(){
         return nomeGrupo;
