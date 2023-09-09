@@ -3,6 +3,8 @@ package Controller;
 import java.beans.EventHandler;
 /*-----IMPORTS */
 import java.time.LocalDate;
+import java.util.List;
+
 import Main.App;
 import Main.Classes.Grupos;
 import Main.Classes.Pessoa;
@@ -13,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
@@ -89,9 +92,8 @@ public class GruposController {
 
         if (labelGrupo != null && !labelGrupo.isEmpty() && data.getValue() != null) {
 
-            if(comparar <= 0) {
+            if (comparar <= 0) {
                 Grupos grupo = new Grupos(labelGrupo);
-
                 App.grupo.addGrupos(grupo);
 
                 /*---COMBO BOX */
@@ -108,14 +110,31 @@ public class GruposController {
                 for (Grupos g : App.grupo.getGrupos()) {
                     System.out.println(g);
                 }
+
+                /*---ALERT */
+                // Alert alertSalvaPessoa = new Alert(Alert.AlertType.INFORMATION);
+                // alertSalvaPessoa.setTitle("GRUPO ADICIONADO");
+                // alertSalvaPessoa.setContentText("Grupo adicionado com sucesso");
+                // alertSalvaPessoa.show();
+                /*------ */
+
             } else {
-                // ---EXCEPTION
-                System.out.println("ESCOLHA UMA DATA CERTA");
+                /*---ALERT */
+                Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
+                alertSalvaPessoa.setTitle("DATA INCORRETA");
+                alertSalvaPessoa.setContentText("Por favor, selecione a data atual em diante.");
+                alertSalvaPessoa.show();
+                /*------ */
                 data.getEditor().clear();
             }
 
         } else {
-            System.out.println("A Label esta vazia");
+            /*---ALERT */
+            Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
+            alertSalvaPessoa.setTitle("CAMPO VAZIL");
+            alertSalvaPessoa.setContentText("Por favor, selecione um campo");
+            alertSalvaPessoa.show();
+            /*------ */
         }
     }
     /*-------------------- */
@@ -131,28 +150,22 @@ public class GruposController {
                 if (novaTela.equals(TelasEnum.GRUPOS)) {
                     obsPessoas = FXCollections.observableArrayList(App.pessoa.getPessoas());
                     todosOsGrupos.setItems(obsPessoas);
-                    obsPessoasNoGrupo = FXCollections.observableArrayList(App.pessoa.getPessoasEscolhidas());
-                    pessoasGrupo.setItems(obsPessoasNoGrupo);
+                    // obsPessoasNoGrupo = FXCollections.observableArrayList(App.pessoa.getPessoasEscolhidas());
+                    // pessoasGrupo.setItems(obsPessoasNoGrupo);
 
-                    // cbGrupos.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                    // if (newValue != null) {
-                    // /*atualiza(newValue);*/
-
-
-                    // }
-                    // });
-
-                    // cbGrupos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Grupos>() {
-                    //     @Override
-                    //     public void changed(ObservableValue<? extends Grupos> observalble, Grupos oldValue, Grupos newValue){
-                            
-                    //         for(Pessoa p : newValue.getPessoasCerta()){
-                    //             System.out.println(p);
-                    //         }
-                            
-                    //     }
-                    // });
-                   
+                    cbGrupos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Grupos>() {
+                        @Override
+                        public void changed(ObservableValue<? extends Grupos> observable, Grupos oldValue, Grupos newValue){
+                            if(newValue != null){
+                                List<Pessoa> pessoasDoGrupo = newValue.getPessoasCerta();
+                                obsPessoasNoGrupo = FXCollections.observableArrayList(pessoasDoGrupo);
+                                pessoasGrupo.setItems(obsPessoasNoGrupo);
+                            }else{
+                                //--SE NADA TIVER SELECIONADO NA COMBOBOX A LISTA SERA LIMPADA
+                                obsPessoasNoGrupo.clear();
+                            }
+                        }
+                    });
 
                 }
             }
@@ -165,32 +178,38 @@ public class GruposController {
     protected void btAddPessoa(ActionEvent e) {
         Pessoa itemPessoa = todosOsGrupos.getSelectionModel().getSelectedItem();
         Grupos gruposSelecionados = cbGrupos.getValue();
-        
+
         if (cbGrupos.getValue() != null && itemPessoa != null) {
-            if(!gruposSelecionados.getPessoasCerta().contains(itemPessoa)){
+            if (!gruposSelecionados.getPessoasCerta().contains(itemPessoa)) {
                 gruposSelecionados.adicionarPessoa(itemPessoa);
 
                 obsPessoasNoGrupo = FXCollections.observableArrayList(gruposSelecionados.getPessoasCerta());
                 pessoasGrupo.setItems(obsPessoasNoGrupo);
 
-            }else{
-                System.out.println("ESSA PESSOA JA FOI ADD NO: " + gruposSelecionados);
+            } else {
+                /*---ALERT */
+                Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
+                alertSalvaPessoa.setTitle("CAMPO VAZIL");
+                alertSalvaPessoa.setContentText("Pessoa já adicionada no grupo: " + gruposSelecionados);
+                alertSalvaPessoa.show();
+                /*------ */
             }
-            
-            for(Pessoa g : gruposSelecionados.getPessoasCerta()){
+
+            for (Pessoa g : gruposSelecionados.getPessoasCerta()) {
                 System.out.println("A pessoa esta no grupo : " + gruposSelecionados + " o nome dela é: " + g);
             }
-        }else {
+        } else {
             // ---EXCEPTION
-            System.out.println("LABEL VAZIA");
+            /*---ALERT */
+            Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
+            alertSalvaPessoa.setTitle("CAMPO VAZIL");
+            alertSalvaPessoa.setContentText("Por favor, selecione um campo");
+            alertSalvaPessoa.show();
+            /*------ */
         }
 
     }
 
-    @FXML
-    protected void btSalvar(ActionEvent e){
-        //----EXCEPTION
-    }
 
     @FXML
     // ----METODO PARA DELETAR PESSOAS DA LISTVIEW
@@ -199,11 +218,16 @@ public class GruposController {
         Grupos gruposSelecionados = cbGrupos.getValue();
         if (itemPessoa != null && gruposSelecionados != null) {
             gruposSelecionados.removerPessoa(itemPessoa);
-            
+
             obsPessoasNoGrupo = FXCollections.observableArrayList(gruposSelecionados.getPessoasCerta());
             pessoasGrupo.setItems(obsPessoasNoGrupo);
         } else {
-            System.out.println("SELECIONE UM CAMPO!");
+            /*---ALERT */
+            Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
+            alertSalvaPessoa.setTitle("CAMPO VAZIL");
+            alertSalvaPessoa.setContentText("Por favor, selecione um campo");
+            alertSalvaPessoa.show();
+            /*------ */
         }
 
     }
@@ -216,6 +240,17 @@ public class GruposController {
         tfNomeGrupo.setText("");
         data.getEditor().clear();
         App.mudarTela(TelasEnum.MAIN);
+    }
+
+    
+    @FXML
+    protected void btSalvar(ActionEvent e) {
+        /*---ALERT */
+        Alert alertSalvaPessoa = new Alert(Alert.AlertType.INFORMATION);
+        alertSalvaPessoa.setTitle("PESSOA");
+        alertSalvaPessoa.setContentText("Pessoas salvas no grupo!");
+        alertSalvaPessoa.show();
+        /*------ */
     }
     /*-----FIM FOOTER */
 

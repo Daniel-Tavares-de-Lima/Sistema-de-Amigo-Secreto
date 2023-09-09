@@ -3,6 +3,7 @@ package Repositorios;
 import java.util.ArrayList;
 
 import Main.Classes.Grupos;
+import javafx.scene.control.Alert;
 
 public class IRepositorioGrupo {
     
@@ -22,7 +23,12 @@ public class IRepositorioGrupo {
                 grupos.add(g);
             }else{
                 //---EXCPETION
-                System.out.println("Grupo ja existente!");
+                /*---ALERT */
+                Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
+                alertSalvaPessoa.setTitle("GRUPO EXISTENTE");
+                alertSalvaPessoa.setContentText("Nome do grupo já existe, por favor digite outro.");
+                alertSalvaPessoa.show();
+                /*------ */
             }
             
         }

@@ -52,7 +52,7 @@
                            </font>
                         </Button>
                         <Button layoutX="439.0" layoutY="307.0" mnemonicParsing="false" prefWidth="50.0" text="Salvar" />
-                        <Button layoutX="365.0" layoutY="307.0" mnemonicParsing="false" text="Cancelar" />
+                        <Button layoutX="365.0" layoutY="307.0" mnemonicParsing="false" onAction="#btnVoltar" text="Cancelar" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -62,11 +62,11 @@
                      <children>
                         <Label layoutX="134.0" layoutY="44.0" text="Grupo: " />
                         <Label layoutX="131.0" layoutY="104.0" text="Pessoa:  " />
-                        <ComboBox fx:id="cbSorteio1" layoutX="191.0" layoutY="40.0" prefWidth="150.0" promptText="Selecione o Grupo" />
+                        <ComboBox fx:id="cbSorteioGrupo" layoutX="191.0" layoutY="40.0" onAction="#mudarPessoas" prefWidth="150.0" promptText="Selecione o Grupo" />
                         <ComboBox fx:id="cbPessoa" layoutX="191.0" layoutY="100.0" prefWidth="150.0" promptText="Selecione a Pessoa" />
                         <Label layoutX="103.0" layoutY="162.0" text="Senha pessoal: " />
-                        <TextField layoutX="192.0" layoutY="158.0" prefWidth="150.0" />
-                        <Button layoutX="192.0" layoutY="229.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="150.0" text="Consultar amigo secreto" />
+                        <TextField fx:id="senha" layoutX="192.0" layoutY="158.0" prefWidth="150.0" promptText="Senha" />
+                        <Button layoutX="192.0" layoutY="229.0" mnemonicParsing="false" onAction="#consultarAmigo" prefHeight="44.0" prefWidth="150.0" text="Consultar amigo secreto" />
                      </children></AnchorPane>
             </content>
           </Tab>

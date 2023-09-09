@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 
 import Main.Classes.Pessoa;
+import javafx.scene.control.Alert;
 
 public class IRepositorioPessoa{
     private ArrayList<Pessoa> pessoas;
@@ -26,9 +27,15 @@ public class IRepositorioPessoa{
             apelidos.add(p);
             senhas.add(p);
         }else{
-            System.out.println("APELIDO JA EXISTE");
+            /*---ALERT */
+            Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
+            alertSalvaPessoa.setTitle("APELIDO JA EXISTE");
+            alertSalvaPessoa.setContentText("O apelido digitado já existe, por favor digite outro");
+            alertSalvaPessoa.show();
+            /*------ */
         }
     }
+
 
     /*-----METODO PARA ADICIONAR PESSOAS ESCOLHIDAS AO GRUPO */
     public void addPessoasEscolhidas(Pessoa p){

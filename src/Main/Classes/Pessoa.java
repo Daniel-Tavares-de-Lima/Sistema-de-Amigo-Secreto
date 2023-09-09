@@ -1,6 +1,7 @@
 package Main.Classes;
 
 import java.util.ArrayList;
+
 import java.util.Objects;
 
 
@@ -10,9 +11,9 @@ public class Pessoa{
     private String apelido;
     private String senha;
 
-    
-
     private ArrayList<Presentes> presentes = new ArrayList<>();
+
+    private ArrayList<String> senhasLista = new ArrayList<>();
 
     public Pessoa(){
        
@@ -22,16 +23,16 @@ public class Pessoa{
         this.nome = nome;
     }
 
-
-    public Pessoa(String nome, String apelido, String senha){
+    public Pessoa(String nome, String apelido, String senha, String senhaLista){
         this.nome = nome;
         this.apelido = apelido;
         this.senha = senha;
+        this.senhasLista.add(senhaLista);
     }
 
     /////////////////////
    
-    
+    /*---PRESENTES */
     public ArrayList<Presentes> getPresenteCerto(){
         return presentes;
     }
@@ -44,6 +45,15 @@ public class Pessoa{
         presentes.remove(presente);
     }
     /////////////////////
+    public void adicionarSenha(String senhaListas){
+        senhasLista.add(senhaListas);
+    }
+    public ArrayList<String> getSenhas(){
+        return senhasLista;
+    }
+    ////////////////////
+
+    
 
   
     public String getNome(){

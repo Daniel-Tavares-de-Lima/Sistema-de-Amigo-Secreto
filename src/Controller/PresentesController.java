@@ -6,6 +6,7 @@ import Main.Classes.Presentes;
 import Main.Classes.TelasEnum;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 /*----- */
@@ -66,13 +67,30 @@ public class PresentesController {
                 categoria.requestFocus();
 
 
+                /*---ALERT */
+                Alert alertSalvaPessoa = new Alert(Alert.AlertType.INFORMATION);
+                alertSalvaPessoa.setTitle("PRESENTES ADICIONADOS");
+                alertSalvaPessoa.setContentText("Presente salvo com sucesso!");
+                alertSalvaPessoa.show();
+                /*------ */
+
             }else{
-                //---EXCEPTION
-                System.out.println("NAO É UM NUMERO");
+                
+                /*---ALERT */
+                Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
+                alertSalvaPessoa.setTitle("APENAS NUMEROS");
+                alertSalvaPessoa.setContentText("Por favor, digite apenas numeros");
+                alertSalvaPessoa.show();
+                /*------ */
                 preco.setText("");
             }
         }else{
-            System.out.println("A label esta vazia");
+            /*---ALERT */
+            Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
+            alertSalvaPessoa.setTitle("CAMPO VAZIL");
+            alertSalvaPessoa.setContentText("Por favor, selecione um campo");
+            alertSalvaPessoa.show();
+            /*------ */
         }
 
     }

@@ -80,7 +80,7 @@
                         <Label layoutX="71.0" layoutY="96.0" text="Todos os Presentes: " />
                         <Label layoutX="351.0" layoutY="96.0" text="Presentes da Pessoa: " />
                         <Button layoutX="383.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnVoltar" text="Cancelar" />
-                        <Button layoutX="454.0" layoutY="335.0" mnemonicParsing="false" prefWidth="50.0" text="Salvar" />
+                        <Button layoutX="454.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnSalvar" prefWidth="50.0" text="Salvar" />
                         <Button fx:id="addButton" layoutX="240.0" layoutY="175.0" mnemonicParsing="false" onAction="#btAddPresente" prefWidth="50.0" text="Add" />
                         <Button layoutX="240.0" layoutY="240.0" mnemonicParsing="false" onAction="#deletePresente" prefWidth="50.0" text="Del" />
                         <ListView fx:id="todosOsPresentes" layoutX="36.0" layoutY="120.0" prefHeight="200.0" prefWidth="177.0" />

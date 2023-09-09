@@ -1,14 +1,19 @@
 package Controller;
 
 
+import java.util.List;
+
 import Main.App;
 import Main.Classes.Pessoa;
 import Main.Classes.Presentes;
 import Main.Classes.TelasEnum;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -80,22 +85,27 @@ public class PessoaController {
         String senhaLabel = senha.getText();
 
         if(nomeLabel != null && !nomeLabel.isEmpty() && apelidoLabel != null && !apelidoLabel.isEmpty() && senhaLabel != null && !senhaLabel.isEmpty()){
-            
-            Pessoa pessoa = new Pessoa(nomeLabel,apelidoLabel, senhaLabel);
-        
+            Pessoa pessoa = new Pessoa(nomeLabel,apelidoLabel, senhaLabel, senhaLabel);
             App.pessoa.addPessoa(pessoa);
-            
             /*---COMBO BOX */
             obsPessoa = FXCollections.observableArrayList(App.pessoa.getPessoas());
             cbPessoa.setItems(obsPessoa);
             cbPessoa.setValue(pessoa);
             /*--------- */
 
+            /*---ALERT PESSOA SALVA */
+            Alert alertSalvaPessoa = new Alert(Alert.AlertType.INFORMATION);
+            alertSalvaPessoa.setTitle("PESSOA SALVA");
+            alertSalvaPessoa.setContentText("PESSOA SALVA COM SUCESSO!");
+            alertSalvaPessoa.show();
+            /*------ */
 
             nomeCompleto.setText("");
             apelido.setText("");
             senha.setText("");
             nomeCompleto.requestFocus();
+
+
 
             for(Pessoa p : App.pessoa.getPessoas()){
                 System.out.println(p.getNome());
@@ -111,7 +121,12 @@ public class PessoaController {
             
 
         }else{
-            System.out.println("A label esta vazia");
+            /*---ALERT PESSOA NAO SALVA */
+            Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
+            alertSalvaPessoa.setTitle("ITEM VAZIO");
+            alertSalvaPessoa.setContentText("POR FAVOR, DIGITE UM CAMPO");
+            alertSalvaPessoa.show();
+            /*------ */
         }
          
     }
@@ -127,9 +142,20 @@ public class PessoaController {
             if(novaTela.equals(TelasEnum.PESSOAS)){
                 obsPresentes = FXCollections.observableArrayList(App.presente.getPresentes());
                 todosOsPresentes.setItems(obsPresentes);
-                presentesDisponiveis = FXCollections.observableArrayList(App.presente.getPresentesEscolhidos());
-                presenteDaPessoa.setItems(presentesDisponiveis);
+                // presentesDisponiveis = FXCollections.observableArrayList(App.presente.getPresentesEscolhidos());
+                // presenteDaPessoa.setItems(presentesDisponiveis);
               
+                cbPessoa.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Pessoa>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Pessoa> observable, Pessoa oldValue, Pessoa newValue){
+                        if(newValue != null){
+                            List<Presentes> presentesEmPessoas = newValue.getPresenteCerto();
+                            presentesDisponiveis = FXCollections.observableArrayList(presentesEmPessoas);
+                            presenteDaPessoa.setItems(presentesDisponiveis);
+                            
+                        }
+                    }
+                });
             }
          }
       });
@@ -148,14 +174,24 @@ public class PessoaController {
                 presentesDisponiveis = FXCollections.observableArrayList(pessoasSelecionadas.getPresenteCerto());
                 presenteDaPessoa.setItems(presentesDisponiveis);
             }else{
-                System.out.println("ESSE PRESENTE JA FOI ADD EM: " + pessoasSelecionadas);
+                /*---ALERT */
+                Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
+                alertSalvaPessoa.setTitle("Presente adicionado");
+                alertSalvaPessoa.setContentText("Esse presente já foi add em: " + pessoasSelecionadas);
+                alertSalvaPessoa.show();
+                /*------ */
             }
 
             for(Presentes p : pessoasSelecionadas.getPresenteCerto()){
                 System.out.println("O presente esta com a pessoa" + pessoasSelecionadas + "o nome: " + p);
             }
         }else{
-            System.out.println("LABEL VAZIA");
+            /*---ALERT */
+            Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
+            alertSalvaPessoa.setTitle("CAMPO VAZIL");
+            alertSalvaPessoa.setContentText("Por favor, selecione um campo");
+            alertSalvaPessoa.show();
+            /*------ */
         }
     }
 
@@ -170,7 +206,12 @@ public class PessoaController {
             presentesDisponiveis = FXCollections.observableArrayList(pessoaSelecionada.getPresenteCerto());
             presenteDaPessoa.setItems(presentesDisponiveis);
         }else{
-            System.out.println("SELECIONE UM CAMPO!");
+            /*---ALERT */
+            Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
+            alertSalvaPessoa.setTitle("CAMPO VAZIL");
+            alertSalvaPessoa.setContentText("Por favor, selecione um campo");
+            alertSalvaPessoa.show();
+            /*------ */
         }
     }
 
@@ -187,6 +228,15 @@ public class PessoaController {
         senha.setText("");
         App.mudarTela(TelasEnum.MAIN);
 
+    }
+
+    @FXML protected void btnSalvar(ActionEvent e){
+        /*---ALERT */
+        Alert alertSalvaPessoa = new Alert(Alert.AlertType.INFORMATION);
+        alertSalvaPessoa.setTitle("CAMPO VAZIL");
+        alertSalvaPessoa.setContentText("Presentes salvas em pessoa.");
+        alertSalvaPessoa.show();
+        /*------ */
     }
     /*-----FIM FOOTER */
 

@@ -3,8 +3,10 @@ package Repositorios;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import Main.Classes.Grupos;
 import Main.Classes.Pessoa;
@@ -13,6 +15,10 @@ public class IRepositorioSorteio {
     
     private List<Pessoa> pessoas;
     
+    /*--- */
+    
+    
+    /*--- */
 
 
     public IRepositorioSorteio(){
@@ -24,7 +30,7 @@ public class IRepositorioSorteio {
 
     /*----METODO QUE REALIZA O SORTEIO */
     public void realizarAmigoSecreto(List<Pessoa> pessoas){
-
+        
 
         List<Pessoa> embaralhaPessoas = new ArrayList<>(pessoas);
         Collections.shuffle(embaralhaPessoas);
@@ -65,6 +71,8 @@ public class IRepositorioSorteio {
 
             System.out.println(pessoaAtual + " tirou " + amigoSecreto);
         }
+
+     
         
     }
 
