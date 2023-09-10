@@ -1,12 +1,12 @@
 package Controller;
 
-import java.util.List;
 
+/*------IMPORTS */
+import java.util.List;
 import Main.App;
 import Main.Classes.Pessoa;
 import Main.Classes.Presentes;
 import Main.Classes.TelasEnum;
-import Repositorios.IRepositorioPessoa;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -18,6 +18,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+/*------ */
+
 
 public class PessoaController {
     /*-----HEADER */
@@ -25,22 +27,18 @@ public class PessoaController {
     protected void bt1Pessoas(ActionEvent e) {
         App.mudarTela(TelasEnum.PESSOAS);
     }
-
     @FXML
     protected void bt1Grupos(ActionEvent e) {
         App.mudarTela(TelasEnum.GRUPOS);
     }
-
     @FXML
     protected void bt1Presentes(ActionEvent e) {
         App.mudarTela(TelasEnum.PRESENTES);
     }
-
     @FXML
     protected void bt1Sorteio(ActionEvent e) {
         App.mudarTela(TelasEnum.SORTEIO);
     }
-
     /** ----FIM HEADER */
 
     /*-----MAIN */
@@ -87,8 +85,6 @@ public class PessoaController {
         if (nomeLabel != null && !nomeLabel.isEmpty() && apelidoLabel != null && !apelidoLabel.isEmpty()
                 && senhaLabel != null && !senhaLabel.isEmpty()) {
 
-            
-
             Pessoa pessoa = new Pessoa(nomeLabel, apelidoLabel, senhaLabel, senhaLabel);
             App.pessoa.addPessoa(pessoa);
 
@@ -111,29 +107,26 @@ public class PessoaController {
                 senha.setText("");
                 nomeCompleto.requestFocus();
 
-                for (Pessoa p : App.pessoa.getPessoas()) {
-                    System.out.println(p.getNome());
-                }
+                // for (Pessoa p : App.pessoa.getPessoas()) {
+                //     System.out.println(p.getNome());
+                // }
 
-                for (Pessoa p : App.pessoa.getApelidos()) {
-                    System.out.println(p.getApelido());
-                }
+                // for (Pessoa p : App.pessoa.getApelidos()) {
+                //     System.out.println(p.getApelido());
+                // }
 
-                for (Pessoa p : App.pessoa.getSenha()) {
-                    System.out.println(p.getSenha());
-                }
+                // for (Pessoa p : App.pessoa.getSenha()) {
+                //     System.out.println(p.getSenha());
+                // }
             } else {
-
                 /*---ALERT PESSOA NAO SALVA */
                 Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
                 alertSalvaPessoa.setTitle("APELIDO EXISTENTE");
                 alertSalvaPessoa.setContentText("O apelido que voce digitou ja existe, por favor digite outro");
                 alertSalvaPessoa.show();
                 /*------ */
-                
                 apelido.setText("");
                 App.pessoa.reseteAddPessoaFalhou();
-
             }
 
         } else {
@@ -156,11 +149,10 @@ public class PessoaController {
             @Override
             public void mudar(TelasEnum novaTela, Object userData) {
                 if (novaTela.equals(TelasEnum.PESSOAS)) {
+
                     obsPresentes = FXCollections.observableArrayList(App.presente.getPresentes());
                     todosOsPresentes.setItems(obsPresentes);
-                    // presentesDisponiveis =
-                    // FXCollections.observableArrayList(App.presente.getPresentesEscolhidos());
-                    // presenteDaPessoa.setItems(presentesDisponiveis);
+
 
                     cbPessoa.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Pessoa>() {
                         @Override
@@ -200,9 +192,9 @@ public class PessoaController {
                 /*------ */
             }
 
-            for (Presentes p : pessoasSelecionadas.getPresenteCerto()) {
-                System.out.println("O presente esta com a pessoa" + pessoasSelecionadas + "o nome: " + p);
-            }
+            // for (Presentes p : pessoasSelecionadas.getPresenteCerto()) {
+            //     System.out.println("O presente esta com a pessoa" + pessoasSelecionadas + "o nome: " + p);
+            // }
         } else {
             /*---ALERT */
             Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
@@ -252,7 +244,7 @@ public class PessoaController {
         /*---ALERT */
         Alert alertSalvaPessoa = new Alert(Alert.AlertType.INFORMATION);
         alertSalvaPessoa.setTitle("CAMPO VAZIL");
-        alertSalvaPessoa.setContentText("Presentes salvas em pessoa.");
+        alertSalvaPessoa.setContentText("Presentes salvo em pessoa.");
         alertSalvaPessoa.show();
         /*------ */
     }

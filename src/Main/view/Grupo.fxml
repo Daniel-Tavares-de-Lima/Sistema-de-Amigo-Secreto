@@ -64,6 +64,8 @@
                               <DatePicker fx:id="data" cache="true" onAction="#getData" promptText="Selecione a Data" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
+                        <Button layoutX="360.0" layoutY="317.0" mnemonicParsing="false" onAction="#btnVoltar" text="Cancelar" />
+                        <Button layoutX="438.0" layoutY="317.0" mnemonicParsing="false" onAction="#salvarGrupo" prefWidth="50.0" text="Salvar" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -87,20 +89,11 @@
                         <ListView fx:id="todosOsGrupos" layoutX="27.0" layoutY="105.0" prefHeight="200.0" prefWidth="177.0" />
                         <ListView fx:id="pessoasGrupo" layoutX="323.0" layoutY="105.0" prefHeight="200.0" prefWidth="177.0" />
                         <ComboBox fx:id="cbGrupos" layoutX="183.0" layoutY="30.0" prefWidth="150.0" />
+                        <Button layoutX="234.0" layoutY="333.0" mnemonicParsing="false" onAction="#btnVoltar" text="Cancelar" />
                      </children></AnchorPane>
             </content>
           </Tab>
         </tabs>
       </TabPane>
-      <Button layoutX="430.0" layoutY="435.0" mnemonicParsing="false" onAction="#salvarGrupo" prefWidth="50.0" text="Salvar">
-         <tooltip>
-            <Tooltip text="Salvar" />
-         </tooltip>
-      </Button>
-      <Button layoutX="351.0" layoutY="435.0" mnemonicParsing="false" onAction="#btnVoltar" text="Cancelar">
-         <tooltip>
-            <Tooltip text="Cancelar" />
-         </tooltip>
-      </Button>
    </children>
 </Pane>

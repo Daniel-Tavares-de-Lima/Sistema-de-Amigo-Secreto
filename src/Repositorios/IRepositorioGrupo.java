@@ -1,9 +1,7 @@
 package Repositorios;
 
 import java.util.ArrayList;
-
 import Main.Classes.Grupos;
-import javafx.scene.control.Alert;
 
 public class IRepositorioGrupo {
     
@@ -13,7 +11,6 @@ public class IRepositorioGrupo {
     public IRepositorioGrupo(){
         grupos = new ArrayList<Grupos>();
     }
-
 
     //---METODO PARA ADICIONAR GRUPOS NO COMBOBOX
     public void addGrupos(Grupos g){

@@ -51,8 +51,7 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button layoutX="439.0" layoutY="307.0" mnemonicParsing="false" prefWidth="50.0" text="Salvar" />
-                        <Button layoutX="365.0" layoutY="307.0" mnemonicParsing="false" onAction="#btnVoltar" text="Cancelar" />
+                        <Button layoutX="234.0" layoutY="307.0" mnemonicParsing="false" onAction="#btnVoltar" text="Cancelar" />
                      </children></AnchorPane>
             </content>
           </Tab>

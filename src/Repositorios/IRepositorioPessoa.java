@@ -1,10 +1,7 @@
 package Repositorios;
 
 import java.util.ArrayList;
-
-
 import Main.Classes.Pessoa;
-import javafx.scene.control.Alert;
 
 public class IRepositorioPessoa{
     private ArrayList<Pessoa> pessoas;
@@ -14,8 +11,6 @@ public class IRepositorioPessoa{
     private boolean addPessoaFalhou = false;
 
     private ArrayList<Pessoa> pessoasEscolhidas = new ArrayList<>();
-
-    
 
     public IRepositorioPessoa(){
         pessoas = new ArrayList<Pessoa>();
@@ -37,9 +32,6 @@ public class IRepositorioPessoa{
             
         }
     }
-
-   
-
 
     /*-----METODO PARA ADICIONAR PESSOAS ESCOLHIDAS AO GRUPO */
     public void addPessoasEscolhidas(Pessoa p){

@@ -8,8 +8,9 @@ public class Pessoa{
     
     private String nome;
     private String apelido;
-    private String senha;
+    private String senha;   
 
+    
     private ArrayList<Presentes> presentes = new ArrayList<>();
 
     private ArrayList<String> senhasLista = new ArrayList<>();
@@ -44,7 +45,7 @@ public class Pessoa{
         presentes.remove(presente);
     }
     /*------ */
-    
+
     /////////////////////
     public void adicionarSenha(String senhaListas){
         senhasLista.add(senhaListas);
@@ -54,6 +55,9 @@ public class Pessoa{
     }
     ////////////////////
 
+    public ArrayList<String> getSenhaCerta(){
+        return senhasLista;
+    }
   
     public String getNome(){
         return this.nome;

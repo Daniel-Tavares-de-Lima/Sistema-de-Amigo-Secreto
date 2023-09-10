@@ -1,12 +1,9 @@
 package Controller;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
 
 /*------IMPORTS */
+import java.util.ArrayList;
+import java.util.List;
 import Main.App;
 import Main.Classes.Grupos;
 import Main.Classes.Pessoa;
@@ -18,8 +15,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-/*------ */
 import javafx.scene.control.TextField;
+/*------ */
 
 public class SorteioController {
     /*----HEADER */
@@ -27,17 +24,14 @@ public class SorteioController {
     protected void bt4Pessoa(ActionEvent e) {
         App.mudarTela(TelasEnum.PESSOAS);
     }
-
     @FXML
     protected void bt4Grupos(ActionEvent e) {
         App.mudarTela(TelasEnum.GRUPOS);
     }
-
     @FXML
     protected void bt4Presentes(ActionEvent e) {
         App.mudarTela(TelasEnum.PRESENTES);
     }
-
     @FXML
     protected void bt4Sorteio(ActionEvent e) {
         App.mudarTela(TelasEnum.SORTEIO);
@@ -59,16 +53,15 @@ public class SorteioController {
 
     /*----VARIAVEIS GRUPO */
     private ObservableList<Grupos> obsSorteio;
-    private ObservableList<Grupos> grupoSelect;
     /** --- */
     /*-----VARIAVEIS PESSOAS */
     private ObservableList<Pessoa> obsSorteio1;
     // private ObservableList<Pessoa> obsSenhas;
     List<String> nomesAmigosSecretos;
+  
     
     
     /*-------- */
-
     @FXML
     protected void initialize() {
         Interface.MudarTela.mudancaListeree(new Interface.MudarTela.mudanca() {
@@ -90,14 +83,11 @@ public class SorteioController {
     }
 
     /*------BOTAO REALIZAR SORTEIO TELA 1*/
-
     @FXML
     protected void sorteio(ActionEvent e) {
 
         Grupos grupoSelecionado = cbSorteio.getValue();
-
         if (cbSorteio.getValue() != null) {
-
              /*---VERIFICA SE HOUVE O SORTEIO */
             if(grupoSelecionado.foiRealizadoSorteio()){
                 /*---ALERT */
@@ -111,20 +101,24 @@ public class SorteioController {
                 // sistemas.realizarAmigoSecreto(grupoSelecionado.getPessoasCerta());
 
                 nomesAmigosSecretos = sistemas.realizarAmigoSecreto(grupoSelecionado.getPessoasCerta());
-                grupoSelecionado.setRealizadoSorteio(true);
-
-                System.out.println(nomesAmigosSecretos);
-
-              
-
                 
+
+                grupoSelecionado.setRealizadoSorteio(true);
+                
+                //---IMPRIME A LISTA DE AMIGOS SECRETOS E PESSOAS CORRESPONDENTES.
+                System.out.println("Sorteio realizado com sucesso!");
+                for(int i = 0; i < grupoSelecionado.getPessoasCerta().size(); i++){
+                    System.out.println(grupoSelecionado.getPessoasCerta().get(i) + " tirou " + nomesAmigosSecretos.get(i));
+                }
+                /*---------- */
+
+
                 /*---ALERT */
                 Alert alertSalvaPessoa = new Alert(Alert.AlertType.INFORMATION);
                 alertSalvaPessoa.setTitle("Sorteio");
                 alertSalvaPessoa.setContentText("Sorteio realizado com sucesso!");
                 alertSalvaPessoa.show();
                 /*------ */
-
             }
 
         } else {
@@ -138,8 +132,6 @@ public class SorteioController {
     }
 
     /*----TELA 2 */
-
-
     @FXML 
     protected void mudarPessoas(ActionEvent e){
         obsSorteio1 = FXCollections.observableArrayList(App.pessoa.getPessoas());
@@ -162,11 +154,9 @@ public class SorteioController {
     /// -----METODO PARA CONSULTAR O AMIGO SECRETO
     protected void consultarAmigo(ActionEvent e) {
         Grupos grupoEscolhido = cbSorteioGrupo.getValue();
-        String senhaDigitada = senha.getText(); // --Remove espaços em branco
+        String senhaDigitada = senha.getText(); 
         Pessoa pessoaEscolhida = cbPessoa.getValue();
         int indicePessoaEscolhida = cbPessoa.getSelectionModel().getSelectedIndex();
-
-   
 
         if (cbSorteioGrupo.getValue() != null && cbPessoa.getValue() != null && senhaDigitada != null && !senhaDigitada.isEmpty()) {
             /*--------VERIFICAR SE A SENHA ESTÁ CORRETA */
@@ -183,9 +173,7 @@ public class SorteioController {
                     alertSalvaPessoa.show();
                     /*------ */
                     
-                    System.out.println("SENHA DISPONIVEL");
-                    
-                    break;// --SE ENCONTROU UMA SENHA CORRETA NAO PRECISA CONTIUNAR VERIFICANDO
+                    break;
                 }
                 // System.out.println(p.getSenha());
             }
@@ -197,14 +185,9 @@ public class SorteioController {
                 alertSalvaPessoa.show();
                 /*------ */
 
-                
             }
             /*------------------------ */
-
-           
             
-            
-
         }else {
             /*---ALERT */
             Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
@@ -213,18 +196,14 @@ public class SorteioController {
             alertSalvaPessoa.show();
             /*------ */
         }
-
         /*------ */
-
     }
 
     /*-----FOOTER */
     @FXML
     protected void btnVoltar(ActionEvent e) {
         senha.setText("");
-
         App.mudarTela(TelasEnum.MAIN);
-
     }
 
 }

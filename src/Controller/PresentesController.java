@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 
 
 public class PresentesController {
-
     /*----HEADER */
     @FXML
     protected void bt3Pessoa(ActionEvent e){
@@ -57,7 +56,6 @@ public class PresentesController {
         
         if(labelCategoria != null && !labelCategoria.isEmpty() && labelDescricao != null && !labelDescricao.isEmpty() && labelPreco != null && !labelPreco.isEmpty()){
             if(labelPreco.substring(0).matches("[0-9]*")){
-
                 Presentes presentes = new Presentes(labelCategoria);
                 App.presente.addPresentes(presentes);
                 
@@ -65,7 +63,6 @@ public class PresentesController {
                 descricao.setText("");
                 preco.setText("");
                 categoria.requestFocus();
-
 
                 /*---ALERT */
                 Alert alertSalvaPessoa = new Alert(Alert.AlertType.INFORMATION);
@@ -75,7 +72,6 @@ public class PresentesController {
                 /*------ */
 
             }else{
-                
                 /*---ALERT */
                 Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
                 alertSalvaPessoa.setTitle("APENAS NUMEROS");

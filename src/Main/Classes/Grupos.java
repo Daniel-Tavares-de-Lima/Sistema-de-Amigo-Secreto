@@ -7,18 +7,13 @@ public class Grupos {
 
     private String nomeGrupo;
     private ArrayList<Pessoa> pessoas = new ArrayList<>();
-    private ArrayList<Pessoa> pessoasAmigoSecreto;
 
 
     public Grupos(){
 
     }
 
-    public ArrayList<Pessoa> obterListaDePessoas(){
-        return pessoasAmigoSecreto;
-    }
-
-
+    
      //---VERIFICA SE HOUVE SORTEIO
     private boolean realizadoSorteio;
 
@@ -48,9 +43,10 @@ public class Grupos {
     public ArrayList<Pessoa> getPessoasCerta(){
         return pessoas;
     }
+
     /*------------ */
 
-    
+
     public String getNomeGrupo(){
         return nomeGrupo;
     }

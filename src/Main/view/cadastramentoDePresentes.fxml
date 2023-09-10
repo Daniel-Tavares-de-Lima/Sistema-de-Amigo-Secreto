@@ -63,9 +63,9 @@
             <Label text="Categoria:  " />
             <Label text="Descrição:  " GridPane.rowIndex="1" />
             <Label text="Preço (R$):  " GridPane.rowIndex="2" />
-            <TextField fx:id="categoria" prefHeight="25.0" prefWidth="241.0" GridPane.columnIndex="1" />
-            <TextField fx:id="preco" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextArea fx:id="descricao" prefHeight="52.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="categoria" prefHeight="25.0" prefWidth="241.0" promptText="Categoria" GridPane.columnIndex="1" />
+            <TextField fx:id="preco" promptText="R$" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextArea fx:id="descricao" prefHeight="52.0" prefWidth="200.0" promptText="Descrição" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Button layoutX="369.0" layoutY="426.0" mnemonicParsing="false" onAction="#btnVoltar" text="Cancelar">

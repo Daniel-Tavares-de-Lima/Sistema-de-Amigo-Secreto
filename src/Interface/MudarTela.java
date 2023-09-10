@@ -4,10 +4,9 @@ import java.util.ArrayList;
 
 import Main.Classes.TelasEnum;
 
-
 public class MudarTela {
     
-    public static ArrayList<mudanca> listeners = new ArrayList<>();
+    private static ArrayList<mudanca> listeners = new ArrayList<>();
 
     public static interface mudanca{
         void mudar(TelasEnum novaTela, Object userData);

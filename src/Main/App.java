@@ -1,5 +1,6 @@
 package Main;
 
+/*----- */
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,12 +12,12 @@ import Repositorios.IRepositorioPessoa;
 import Repositorios.IRepositorioPresente;
 import Repositorios.IRepositorioSorteio;
 import Interface.MudarTela;
-
+/*------- */
 
 
 public class App extends Application {
 
-    /*----MAIN */
+    /*----FXML */
     private static Stage stage;
     private static Scene mainSistema;
     private static Scene cdtsPessoas;
@@ -43,7 +44,6 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         stage = primaryStage;
         primaryStage.setTitle("Amigo Secreto");
 
@@ -69,9 +69,9 @@ public class App extends Application {
         /* ---------------*/ 
 
         primaryStage.setScene(mainSistema);
+        primaryStage.setResizable(false);
         primaryStage.show();
 
-        //--CARREGANDO METODO PESSOA CONTROLER
         
     }
 
@@ -84,8 +84,6 @@ public class App extends Application {
 
         // gruposParaVer = new Grupos();
 
-        
-        
         launch(args);
     }
     

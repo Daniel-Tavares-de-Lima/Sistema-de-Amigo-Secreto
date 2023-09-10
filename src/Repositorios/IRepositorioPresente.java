@@ -9,7 +9,6 @@ public class IRepositorioPresente {
     
     private ArrayList<Presentes> presentesEscolhidos = new ArrayList<>();
     
-
     public IRepositorioPresente(){
         presentes = new ArrayList<Presentes>();
     }

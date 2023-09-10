@@ -1,10 +1,8 @@
 package Controller;
 
-import java.beans.EventHandler;
 /*-----IMPORTS */
 import java.time.LocalDate;
 import java.util.List;
-
 import Main.App;
 import Main.Classes.Grupos;
 import Main.Classes.Pessoa;
@@ -21,7 +19,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 /*---------- */
-import javafx.scene.input.MouseEvent;
+
 
 public class GruposController {
     /*----HEADER */
@@ -69,7 +67,6 @@ public class GruposController {
     /*------ PESSOAS*/
     private ObservableList<Pessoa> obsPessoas;
     private ObservableList<Pessoa> obsPessoasNoGrupo;
-
     /*------------- */
 
     // ---METODO PARA O DATEPICKER
@@ -79,11 +76,9 @@ public class GruposController {
 
         comparar = dataAtual.compareTo(calenData);
 
-        System.out.println(calenData.toString());
     }
 
     // ---METODO PARA SALVAR O NOME DO GRUPO
-
     @FXML
     protected void salvarGrupo(ActionEvent e) {
 
@@ -114,19 +109,17 @@ public class GruposController {
                     tfNomeGrupo.requestFocus();
                     data.getEditor().clear();
 
-                    for (Grupos g : App.grupo.getGrupos()) {
-                        System.out.println(g);
-                    }
+                    // for (Grupos g : App.grupo.getGrupos()) {
+                    //     System.out.println(g);
+                    // }
 
                 } else {
-                
                     /*---ALERT */
                     Alert alertSalvaPessoa = new Alert(Alert.AlertType.ERROR);
                     alertSalvaPessoa.setTitle("GRUPO EXISTENTE");
                     alertSalvaPessoa.setContentText("Nome do grupo já existe, por favor digite outro.");
                     alertSalvaPessoa.show();
                     /*------ */
-
                     tfNomeGrupo.setText("");
                     App.grupo.reseteGrupoFalhou();
                 }
@@ -154,7 +147,6 @@ public class GruposController {
 
     /*------TELA 2 */
     /*-----METODO QUE MANDA AS INFORMAÇÕES DA TELA PESSOA PARA A TELA GRUPO */
-
     @FXML
     protected <T> void initialize() {
         Interface.MudarTela.mudancaListeree(new Interface.MudarTela.mudanca() {
@@ -209,9 +201,9 @@ public class GruposController {
                 /*------ */
             }
 
-            for (Pessoa g : gruposSelecionados.getPessoasCerta()) {
-                System.out.println("A pessoa esta no grupo : " + gruposSelecionados + " o nome dela é: " + g);
-            }
+            // for (Pessoa g : gruposSelecionados.getPessoasCerta()) {
+            //     System.out.println("A pessoa esta no grupo : " + gruposSelecionados + " o nome dela é: " + g);
+            // }
         } else {
             // ---EXCEPTION
             /*---ALERT */
@@ -246,6 +238,7 @@ public class GruposController {
     }
 
     /*---FIM MAIN */
+
 
     /*---FOOTER-- */
     @FXML
