@@ -2,7 +2,7 @@
 
 
 ## Descrição geral do Projeto.
-Projeto de Faculdade. Sistema para controlar a brincadeira do amigo secreto. O sistema gerenciará grupos de pessoas que desejam realizar um sorteio de amigos secretos entre si, permitindo que cada membro do grupo escolha os presentes que deseja ganhar.
+Projeto da Faculdade. Sistema para controlar a brincadeira do amigo secreto. O sistema gerenciará grupos de pessoas que desejam realizar um sorteio de amigos secretos entre si, permitindo que cada membro do grupo escolha os presentes que deseja ganhar.
 
 ## Requisitos do projeto.
 
