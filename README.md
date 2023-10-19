@@ -15,3 +15,6 @@ Projeto da Faculdade. Sistema para controlar a brincadeira do amigo secreto. O s
 * **REQ7** - O sistema NÃO precisa ter controle de acesso para usuários diferentes, mas, uma vez executando o sistema, a tela com informações sobre qual amigo secreto cada pessoa tirou deve ser controlada pela senha pessoal.
 * **REQ8** - Para fins de teste, você deve fornecer em algum de seus controladores um método que retorne a lista de pessoas de um grupo com seus respectivos amigos secretos, com a intenção se verificar em modo de depuração se o sorteio foi realizado corretamente
 * **REQ9** - O sistema deve obedecer ao padrão arquitetural MVC, ou seja, deve ser estruturado em camadas, assim como apresentado em sala de aula.
+
+![DEMONSTRACION]()
+
